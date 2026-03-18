@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" styleClass="page-content"
+      fx:controller="org.aurora.launcher.ui.controller.settings.DownloadSettingsController">
+    
+    <VBox styleClass="settings-section">
+        <Spinner fx:id="concurrentSpinner" initialValue="4" max="16" min="1"/>
+    </VBox>
+    
+    <VBox styleClass="settings-section">
+        <CheckBox fx:id="proxyEnabledBox" text="%settings.proxy.enable"/>
+        <HBox spacing="10">
+            <TextField fx:id="proxyHostField" promptText="%settings.proxy.host"/>
+            <TextField fx:id="proxyPortField" promptText="%settings.proxy.port"/>
+        </HBox>
+    </VBox>
+    
+    <VBox styleClass="settings-section">
+        <ComboBox fx:id="mirrorBox" promptText="%settings.mirror"/>
+    </VBox>
+    
+    <Button text="%action.save" styleClass="btn-primary" onAction="#onSave"/>
+    
+</VBox>

@@ -1,0 +1,18 @@
+{
+  "id": "vanilla-server",
+  "name": "Vanilla Server",
+  "description": "Default configuration for vanilla Minecraft server",
+  "gameVersion": "any",
+  "defaults": {
+    "server-port": 25565,
+    "max-players": 20,
+    "difficulty": "normal",
+    "gamemode": "survival",
+    "online-mode": true,
+    "view-distance": 10,
+    "spawn-protection": 16,
+    "allow-nether": true,
+    "enable-command-block": false
+  },
+  "rules": []
+}

@@ -1,0 +1,17 @@
+dependencies {
+    implementation project(':core')
+    implementation project(':download')
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation 'org.slf4j:slf4j-api:2.0.9'
+    
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
+    testImplementation 'com.squareup.okhttp3:mockwebserver:4.12.0'
+}
+
+test {
+    useJUnitPlatform()
+    maxParallelForks = 1
+    forkEvery = 1
+    jvmArgs '-Xmx128m', '-XX:+UseSerialGC'
+}

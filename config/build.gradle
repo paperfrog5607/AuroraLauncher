@@ -1,0 +1,13 @@
+dependencies {
+    implementation project(':core')
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'org.tomlj:tomlj:1.1.0'
+    implementation 'org.yaml:snakeyaml:2.0'
+    
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
+    testImplementation 'org.mockito:mockito-core:5.5.0'
+}
+
+test {
+    useJUnitPlatform()
+}

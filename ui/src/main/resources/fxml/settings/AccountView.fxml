@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" styleClass="page-content"
+      fx:controller="org.aurora.launcher.ui.controller.settings.AccountSettingsController">
+    
+    <HBox spacing="15" styleClass="current-account">
+        <ImageView fx:id="avatarView" fitWidth="64" fitHeight="64"/>
+        <VBox spacing="4">
+            <Label fx:id="usernameLabel" styleClass="username"/>
+            <Label fx:id="accountTypeLabel" styleClass="account-type"/>
+        </VBox>
+    </HBox>
+    
+    <HBox spacing="10">
+        <Button fx:id="loginMicrosoftButton" text="%account.type.microsoft" onAction="#onLoginMicrosoft"/>
+        <Button fx:id="loginOfflineButton" text="%account.type.offline" onAction="#onLoginOffline"/>
+        <Button fx:id="logoutButton" text="%account.logout" onAction="#onLogout"/>
+        <Button fx:id="refreshSkinButton" text="%account.refresh" onAction="#onRefreshSkin"/>
+    </HBox>
+    
+    <ListView fx:id="accountList"/>
+    
+    <HBox spacing="10">
+        <Button text="%account.switch" onAction="#onSwitchAccount"/>
+        <Button text="%action.delete" onAction="#onDeleteAccount"/>
+    </HBox>
+    
+</VBox>

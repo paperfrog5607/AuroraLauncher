@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" spacing="16" styleClass="dialog-content" prefWidth="500">
+    <HBox spacing="16">
+        <ImageView fx:id="iconView" fitWidth="80" fitHeight="80" styleClass="mod-icon"/>
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label fx:id="nameLabel" styleClass="mod-name"/>
+            <Label fx:id="authorLabel" styleClass="mod-author"/>
+            <HBox spacing="8">
+                <Label fx:id="sourceLabel" styleClass="mod-source"/>
+                <Label fx:id="downloadsLabel" styleClass="mod-downloads"/>
+            </HBox>
+            <Hyperlink fx:id="pageLink" text="访问主页" styleClass="mod-link"/>
+        </VBox>
+    </HBox>
+    
+    <TextArea fx:id="descriptionArea" styleClass="mod-description" wrapText="true" editable="false" prefRowCount="4"/>
+    
+    <VBox spacing="8">
+        <Label text="可用版本:" styleClass="form-label"/>
+        <ListView fx:id="versionsList" styleClass="version-list" prefHeight="120"/>
+    </VBox>
+    
+    <HBox spacing="8" alignment="CENTER_RIGHT">
+        <Button fx:id="downloadButton" text="下载选中版本" onAction="#onDownload" styleClass="btn-primary"/>
+    </HBox>
+</VBox>

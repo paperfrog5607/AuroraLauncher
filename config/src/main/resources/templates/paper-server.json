@@ -1,0 +1,32 @@
+{
+  "id": "paper-server",
+  "name": "Paper Server",
+  "description": "Optimized configuration for Paper server",
+  "gameVersion": "any",
+  "loaderType": "paper",
+  "defaults": {
+    "server-port": 25565,
+    "max-players": 100,
+    "difficulty": "normal",
+    "online-mode": true,
+    "view-distance": 8,
+    "simulation-distance": 6,
+    "spawn-protection": 0,
+    "allow-nether": true,
+    "enable-command-block": true
+  },
+  "rules": [
+    {
+      "key": "view-distance",
+      "value": 8,
+      "condition": "ALWAYS",
+      "comment": "Reduced view distance for better performance"
+    },
+    {
+      "key": "simulation-distance",
+      "value": 6,
+      "condition": "IF_MISSING",
+      "comment": "Reduced simulation distance for better performance"
+    }
+  ]
+}

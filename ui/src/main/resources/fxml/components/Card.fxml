@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" styleClass="card">
+    <HBox fx:id="headerArea" styleClass="card-header">
+        <Label fx:id="titleLabel" styleClass="card-title"/>
+        <HBox HBox.hgrow="ALWAYS"/>
+        <HBox fx:id="headerButtons" spacing="8"/>
+        <StackPane fx:id="expandIcon" styleClass="expand-icon">
+            <ImageView fitWidth="16" fitHeight="16">
+                <Image url="@../../images/icons/chevron-down.png"/>
+            </ImageView>
+        </StackPane>
+    </HBox>
+    <VBox fx:id="contentArea" styleClass="card-content"/>
+</VBox>

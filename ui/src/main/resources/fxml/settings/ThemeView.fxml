@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" styleClass="page-content"
+      fx:controller="org.aurora.launcher.ui.controller.settings.ThemeSettingsController">
+    
+    <VBox styleClass="settings-section">
+        <ComboBox fx:id="themeBox" promptText="%settings.theme"/>
+        <CheckBox fx:id="darkModeBox" text="%settings.theme.dark"/>
+        <CheckBox fx:id="enableAnimationBox" text="%settings.theme.animation"/>
+    </VBox>
+    
+    <VBox styleClass="settings-section">
+        <Button fx:id="selectBackgroundButton" text="%settings.theme.background" onAction="#onSelectBackground"/>
+        <ImageView fx:id="backgroundPreview" fitWidth="200" fitHeight="150"/>
+    </VBox>
+    
+    <VBox styleClass="settings-section">
+        <ComboBox fx:id="fontFamilyBox" promptText="Font Family"/>
+    </VBox>
+    
+</VBox>

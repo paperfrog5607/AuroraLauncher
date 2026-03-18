@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" styleClass="page-container"
+            fx:controller="org.aurora.launcher.ui.controller.settings.SettingsController">
+    
+    <top>
+        <HBox fx:id="subTabBar" styleClass="sub-tab-bar">
+            <Button id="launch" text="%settings.launch" onAction="#onLaunchTab" styleClass="sub-tab-btn, active"/>
+            <Button id="download" text="%settings.download" onAction="#onDownloadTab" styleClass="sub-tab-btn"/>
+            <Button id="theme" text="%settings.theme" onAction="#onThemeTab" styleClass="sub-tab-btn"/>
+            <Button id="account" text="%settings.account" onAction="#onAccountTab" styleClass="sub-tab-btn"/>
+            <Button id="about" text="%settings.about" onAction="#onAboutTab" styleClass="sub-tab-btn"/>
+        </HBox>
+    </top>
+    
+    <center>
+        <StackPane fx:id="subContentArea"/>
+    </center>
+    
+</BorderPane>

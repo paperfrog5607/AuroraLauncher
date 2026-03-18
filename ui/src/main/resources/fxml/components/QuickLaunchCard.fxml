@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" styleClass="card" 
+      fx:controller="org.aurora.launcher.ui.controller.launch.QuickLaunchCard">
+    
+    <HBox styleClass="card-header">
+        <Label text="%card.quickLaunch" styleClass="card-title"/>
+        <HBox HBox.hgrow="ALWAYS"/>
+        <StackPane fx:id="expandIcon" styleClass="expand-icon"/>
+    </HBox>
+    
+    <VBox fx:id="contentArea" styleClass="card-content">
+        <HBox spacing="15" alignment="CENTER_LEFT">
+            <ImageView fx:id="avatarView" fitWidth="48" fitHeight="48" styleClass="avatar"/>
+            <VBox spacing="4">
+                <Label fx:id="usernameLabel" styleClass="username"/>
+                <Label fx:id="accountTypeLabel" styleClass="account-type"/>
+            </VBox>
+            <HBox HBox.hgrow="ALWAYS"/>
+            <ComboBox fx:id="versionBox" promptText="%quickLaunch.selectVersion"/>
+            <Button fx:id="launchButton" text="%quickLaunch.startGame" styleClass="btn-primary" onAction="#onLaunch"/>
+            <Button text="%quickLaunch.changeAccount" styleClass="btn-secondary" onAction="#onChangeAccount"/>
+        </HBox>
+    </VBox>
+    
+</VBox>

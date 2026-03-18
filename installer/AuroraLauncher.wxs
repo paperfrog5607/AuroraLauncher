@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+    <Product Id="*" Name="Aurora Launcher" Language="2052" Codepage="936" Version="1.0.0" Manufacturer="Aurora Team" UpgradeCode="E9A7B8C6-D4F3-4E5A-9B1C-2D8E7F6A5B4C">
+        <Package Id="*" Keywords="Minecraft Launcher" Description="Aurora Launcher - Modern Minecraft Launcher" Manufacturer="Aurora Team" InstallerVersion="500" Languages="2052" Compressed="yes" InstallScope="perMachine" />
+        
+        <MajorUpgrade DowngradeErrorMessage="已安装更新版本的 Aurora Launcher，无需降级安装。" />
+        <MediaTemplate EmbedCab="yes" />
+        
+        <Property Id="WIXUI_INSTALLDIR" Value="INSTALLDIR" />
+        <Property Id="ARPPRODUCTICON" Value="AppIcon.ico" />
+        <Property Id="ARPURLINFOABOUT" Value="https://github.com/aurora-launcher" />
+        
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="ProgramFilesFolder">
+                <Directory Id="INSTALLDIR" Name="Aurora Launcher" />
+            </Directory>
+            <Directory Id="DesktopFolder" Name="Desktop" />
+            <Directory Id="ProgramMenuFolder">
+                <Directory Id="ApplicationProgramsFolder" Name="Aurora Launcher" />
+            </Directory>
+        </Directory>
+        
+        <DirectoryRef Id="ApplicationProgramsFolder">
+            <Component Id="UninstallShortcut" Guid="A1B2C3D4-E5F6-7890-ABCD-EF1234567890">
+                <Shortcut Id="UninstallProduct" Name="卸载 Aurora Launcher" Target="[SystemFolder]msiexec.exe" Arguments="/x [ProductCode]" Description="卸载 Aurora Launcher" Icon="AppIcon.ico" />
+                <RemoveFolder Id="RemoveApplicationProgramsFolder" On="uninstall" />
+                <RegistryValue Root="HKCU" Key="Software\Aurora Team\Aurora Launcher" Type="string" Value="" KeyPath="yes" />
+            </Component>
+        </DirectoryRef>
+        
+        <DirectoryRef Id="INSTALLDIR">
+            <Component Id="DesktopShortcutComponent" Guid="B2C3D4E5-F6A7-8901-BCDE-F12345678901">
+                <Shortcut Id="DesktopShortcut" Directory="DesktopFolder" Name="Aurora Launcher" Target="[INSTALLDIR]AuroraLauncher.exe" WorkingDirectory="INSTALLDIR" Icon="AppIcon.ico" />
+                <RegistryValue Root="HKCU" Key="Software\Aurora Team\Aurora Launcher" Name="DesktopShortcut" Type="integer" Value="1" KeyPath="yes" />
+            </Component>
+        </DirectoryRef>
+        
+        <Feature Id="MainFeature" Title="Aurora Launcher" Level="1">
+            <ComponentGroupRef Id="HarvestComponents" />
+            <ComponentRef Id="UninstallShortcut" />
+            <ComponentRef Id="DesktopShortcutComponent" />
+        </Feature>
+        
+        <Icon Id="AppIcon.ico" SourceFile="..\ui\build\distribute\AuroraLauncher\AuroraLauncher.ico" />
+        
+        <UIRef Id="WixUI_InstallDir" />
+        <UIRef Id="WixUI_ErrorProgressText" />
+        
+        <WixVariable Id="WixUILicenseRtf" Value="license.rtf" />
+    </Product>
+</Wix>

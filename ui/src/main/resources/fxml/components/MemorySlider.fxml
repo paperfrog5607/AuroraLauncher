@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" styleClass="memory-slider" spacing="8">
+    <HBox spacing="8" alignment="CENTER_LEFT">
+        <Label text="内存预设:" styleClass="memory-label"/>
+        <ComboBox fx:id="presetBox" styleClass="memory-preset"/>
+    </HBox>
+    
+    <VBox spacing="4">
+        <HBox spacing="8" alignment="CENTER_LEFT">
+            <Label text="最小内存:" styleClass="memory-label"/>
+            <Label fx:id="minLabel" styleClass="memory-value"/>
+        </HBox>
+        <Slider fx:id="minSlider" styleClass="memory-slider-control" showTickLabels="true" showTickMarks="true" majorTickUnit="1024" minorTickCount="4" blockIncrement="256"/>
+    </VBox>
+    
+    <VBox spacing="4">
+        <HBox spacing="8" alignment="CENTER_LEFT">
+            <Label text="最大内存:" styleClass="memory-label"/>
+            <Label fx:id="maxLabel" styleClass="memory-value"/>
+        </HBox>
+        <Slider fx:id="maxSlider" styleClass="memory-slider-control" showTickLabels="true" showTickMarks="true" majorTickUnit="1024" minorTickCount="4" blockIncrement="256"/>
+    </VBox>
+</VBox>

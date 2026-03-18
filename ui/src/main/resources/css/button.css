@@ -1,0 +1,154 @@
+.button {
+    -fx-background-color: -fx-bg-tertiary;
+    -fx-text-fill: -fx-text-primary;
+    -fx-background-radius: 8px;
+    -fx-padding: 8px 16px;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+}
+
+.button:hover {
+    -fx-background-color: -fx-bg-hover;
+}
+
+.button:pressed {
+    -fx-background-color: -fx-bg-selected;
+}
+
+.btn-primary {
+    -fx-background-color: -fx-primary;
+    -fx-text-fill: white;
+}
+
+.btn-primary:hover {
+    -fx-background-color: -fx-primary-hover;
+}
+
+.btn-primary:pressed {
+    -fx-background-color: -fx-primary-pressed;
+}
+
+.primary-btn {
+    -fx-background-color: #8B5CF6;
+    -fx-text-fill: white;
+    -fx-background-radius: 8px;
+    -fx-padding: 8px 16px;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+    -fx-border-width: 0;
+}
+
+.primary-btn:hover {
+    -fx-background-color: #7C3AED;
+}
+
+.primary-btn:pressed {
+    -fx-background-color: #6D28D9;
+}
+
+.btn-secondary {
+    -fx-background-color: -fx-bg-secondary;
+    -fx-text-fill: -fx-text-primary;
+    -fx-border-color: -fx-border;
+    -fx-border-width: 1px;
+}
+
+.btn-sm {
+    -fx-padding: 4px 12px;
+    -fx-font-size: 12px;
+}
+
+.btn-lg {
+    -fx-padding: 12px 24px;
+    -fx-font-size: 15px;
+}
+
+.btn-icon {
+    -fx-background-radius: 50%;
+    -fx-min-width: 32px;
+    -fx-min-height: 32px;
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+}
+
+.btn-icon:hover {
+    -fx-background-color: -fx-bg-hover;
+}
+
+.btn-icon.btn-sm {
+    -fx-min-width: 24px;
+    -fx-min-height: 24px;
+}
+
+.btn-icon.btn-lg {
+    -fx-min-width: 40px;
+    -fx-min-height: 40px;
+}
+
+.btn-danger {
+    -fx-background-color: -fx-error;
+    -fx-text-fill: white;
+}
+
+.btn-danger:hover {
+    -fx-background-color: #DC2626;
+}
+
+.btn-success {
+    -fx-background-color: -fx-success;
+    -fx-text-fill: white;
+}
+
+.btn-success:hover {
+    -fx-background-color: #059669;
+}
+
+.btn-warning {
+    -fx-background-color: -fx-warning;
+    -fx-text-fill: white;
+}
+
+.btn-warning:hover {
+    -fx-background-color: #D97706;
+}
+
+.btn-outline {
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-primary;
+    -fx-border-color: -fx-primary;
+    -fx-border-width: 1px;
+}
+
+.btn-outline:hover {
+    -fx-background-color: -fx-primary-light;
+}
+
+.btn-ghost {
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-text-secondary;
+}
+
+.btn-ghost:hover {
+    -fx-background-color: -fx-bg-hover;
+    -fx-text-fill: -fx-text-primary;
+}
+
+.button:disabled {
+    -fx-background-color: -fx-bg-tertiary;
+    -fx-text-fill: -fx-text-disabled;
+    -fx-opacity: 0.5;
+    -fx-cursor: default;
+}
+
+.button-group {
+    -fx-spacing: 8px;
+}
+
+.button-group.tight {
+    -fx-spacing: 4px;
+}
+
+.btn-block {
+    -fx-pref-width: 100%;
+}

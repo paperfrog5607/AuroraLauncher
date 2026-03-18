@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" styleClass="page-container"
+            fx:controller="org.aurora.launcher.ui.controller.download.DownloadController">
+    
+    <top>
+        <HBox fx:id="subTabBar" styleClass="sub-tab-bar">
+            <Button id="version" text="%download.version" onAction="#onVersionTab" styleClass="sub-tab-btn, active"/>
+            <Button id="mod" text="%download.mod" onAction="#onModTab" styleClass="sub-tab-btn"/>
+            <Button id="modpack" text="%download.modpack" onAction="#onModpackTab" styleClass="sub-tab-btn"/>
+            <Button id="resource" text="%download.resource" onAction="#onResourceTab" styleClass="sub-tab-btn"/>
+            <Button id="shader" text="%download.shader" onAction="#onShaderTab" styleClass="sub-tab-btn"/>
+        </HBox>
+    </top>
+    
+    <center>
+        <StackPane fx:id="subContentArea"/>
+    </center>
+    
+</BorderPane>

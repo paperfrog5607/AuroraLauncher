@@ -1,0 +1,62 @@
+.root {
+    -fx-primary: #8B5CF6;
+    -fx-primary-hover: #A78BFA;
+    -fx-primary-pressed: #7C3AED;
+    -fx-primary-light: rgba(139, 92, 246, 0.1);
+    
+    -fx-bg-primary: #1A1A2E;
+    -fx-bg-secondary: #16213E;
+    -fx-bg-tertiary: #0F3460;
+    -fx-bg-card: #1F2937;
+    -fx-bg-hover: #374151;
+    -fx-bg-selected: #4B5563;
+    
+    -fx-text-primary: #F9FAFB;
+    -fx-text-secondary: #D1D5DB;
+    -fx-text-tertiary: #9CA3AF;
+    -fx-text-disabled: #6B7280;
+    
+    -fx-border: #374151;
+    -fx-border-light: #4B5563;
+    -fx-border-focus: -fx-primary;
+    
+    -fx-success: #10B981;
+    -fx-warning: #F59E0B;
+    -fx-error: #EF4444;
+    -fx-info: #3B82F6;
+    
+    -fx-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    -fx-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+    -fx-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+    
+    -fx-radius-sm: 4px;
+    -fx-radius-md: 8px;
+    -fx-radius-lg: 12px;
+    
+    -fx-transition-fast: 0.15s ease;
+    -fx-transition-normal: 0.3s ease;
+}
+
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: -fx-bg-hover;
+    -fx-background-radius: 4px;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: -fx-bg-selected;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+.scroll-bar:vertical .increment-arrow,
+.scroll-bar:vertical .decrement-arrow {
+    -fx-background-color: transparent;
+}

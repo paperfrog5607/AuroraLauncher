@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" styleClass="page-content" spacing="10"
+      fx:controller="org.aurora.launcher.ui.controller.download.VersionController">
+    
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <TextField fx:id="searchField" promptText="%search.placeholder" 
+                   styleClass="search-field" onAction="#onSearch" HBox.hgrow="ALWAYS"/>
+        <ChoiceBox fx:id="typeFilter" styleClass="type-filter"/>
+        <ProgressIndicator fx:id="loadingIndicator" visible="false" maxWidth="24" maxHeight="24"/>
+    </HBox>
+    
+    <Label fx:id="statusLabel" styleClass="status-label" text=""/>
+    
+    <ListView fx:id="versionList" styleClass="version-list" VBox.vgrow="ALWAYS"/>
+    
+</VBox>

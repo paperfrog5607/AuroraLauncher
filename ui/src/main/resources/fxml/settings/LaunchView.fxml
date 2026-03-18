@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" styleClass="page-content"
+      fx:controller="org.aurora.launcher.ui.controller.settings.LaunchSettingsController">
+    
+    <VBox styleClass="settings-section">
+        <Label text="%settings.java" styleClass="section-title"/>
+        <HBox spacing="10">
+            <TextField fx:id="javaPathField" HBox.hgrow="ALWAYS"/>
+            <Button text="%settings.java.detect" onAction="#onDetectJava"/>
+            <Button text="%action.browse" onAction="#onBrowseJava"/>
+        </HBox>
+    </VBox>
+    
+    <VBox styleClass="settings-section">
+        <Label text="%settings.memory" styleClass="section-title"/>
+        <ComboBox fx:id="memoryPresetBox" promptText="%settings.memory.preset"/>
+        <HBox spacing="20">
+            <VBox>
+                <Label text="%settings.memory.min"/>
+                <Slider fx:id="minMemorySlider"/>
+                <Label fx:id="minMemoryLabel"/>
+            </VBox>
+            <VBox>
+                <Label text="%settings.memory.max"/>
+                <Slider fx:id="maxMemorySlider"/>
+                <Label fx:id="maxMemoryLabel"/>
+            </VBox>
+        </HBox>
+    </VBox>
+    
+    <VBox styleClass="settings-section">
+        <Label text="%settings.jvmArgs" styleClass="section-title"/>
+        <TextArea fx:id="jvmArgsField"/>
+    </VBox>
+    
+    <Button text="%action.save" styleClass="btn-primary" onAction="#onSave"/>
+    
+</VBox>

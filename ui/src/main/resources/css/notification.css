@@ -1,0 +1,135 @@
+.notification {
+    -fx-background-radius: -fx-radius-md;
+    -fx-padding: 12px 16px;
+    -fx-spacing: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0, 0, 4);
+    -fx-min-width: 280px;
+}
+
+.notification--info {
+    -fx-background-color: -fx-info;
+}
+
+.notification--success {
+    -fx-background-color: -fx-success;
+}
+
+.notification--warning {
+    -fx-background-color: -fx-warning;
+}
+
+.notification--error {
+    -fx-background-color: -fx-error;
+}
+
+.notification .message {
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+}
+
+.notification .title {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.notification .button {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-text-fill: white;
+    -fx-background-radius: -fx-radius-sm;
+    -fx-padding: 4px 8px;
+    -fx-font-size: 12px;
+}
+
+.notification .button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+}
+
+.notification-container {
+    -fx-spacing: 8px;
+    -fx-alignment: top-right;
+}
+
+.notification-container.top-right {
+    -fx-alignment: top-right;
+}
+
+.notification-container.top-left {
+    -fx-alignment: top-left;
+}
+
+.notification-container.bottom-right {
+    -fx-alignment: bottom-right;
+}
+
+.notification-container.bottom-left {
+    -fx-alignment: bottom-left;
+}
+
+.notification-close {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-min-width: 20px;
+    -fx-min-height: 20px;
+    -fx-padding: 0;
+    -fx-background-radius: 50%;
+}
+
+.notification-close:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+}
+
+.notification-icon {
+    -fx-fill: white;
+    -fx-min-width: 20px;
+    -fx-min-height: 20px;
+}
+
+.toast {
+    -fx-background-color: rgba(0, 0, 0, 0.8);
+    -fx-background-radius: -fx-radius-md;
+    -fx-padding: 10px 16px;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+}
+
+.progress-toast {
+    -fx-spacing: 8px;
+}
+
+.progress-toast .progress-bar {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+    -fx-background-radius: -fx-radius-sm;
+    -fx-pref-height: 4px;
+    -fx-min-width: 150px;
+}
+
+.progress-toast .progress-bar .bar {
+    -fx-background-color: white;
+    -fx-background-radius: -fx-radius-sm;
+}
+
+.snackbar {
+    -fx-background-color: rgba(0, 0, 0, 0.85);
+    -fx-background-radius: -fx-radius-sm;
+    -fx-padding: 12px 20px;
+    -fx-spacing: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0, 0, 2);
+}
+
+.snackbar .message {
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+}
+
+.snackbar .action {
+    -fx-background-color: transparent;
+    -fx-text-fill: -fx-primary-hover;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+
+.snackbar .action:hover {
+    -fx-text-fill: white;
+}

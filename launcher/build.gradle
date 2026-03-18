@@ -1,0 +1,21 @@
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
+dependencies {
+    implementation project(':core')
+    implementation project(':download')
+    implementation project(':account')
+    
+    implementation 'org.slf4j:slf4j-api:2.0.9'
+    implementation 'com.google.code.gson:gson:2.10.1'
+    
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+}
+
+test {
+    useJUnitPlatform()
+}

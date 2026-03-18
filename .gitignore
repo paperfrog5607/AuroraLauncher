@@ -1,0 +1,55 @@
+# Build directories
+build/
+out/
+dist/
+target/
+
+# Gradle
+.gradle/
+gradle-app.setting
+!gradle-wrapper.jar
+!gradle-wrapper.properties
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.settings/
+.classpath
+.project
+
+# OS
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+
+# Local config
+*.local
+.env
+application-local.properties
+
+# Cache
+.cache/
+*.cache
+api/cache/
+cache/
+
+# Runtime data
+aurora/
+.aurora/
+
+# Package files (keep source only)
+*.exe
+*.msi
+*.dmg
+*.deb
+*.rpm
+
+# Large files - download separately
+javafx-jmods/
+javafx-jmods.zip
+output.txt
+error.txt

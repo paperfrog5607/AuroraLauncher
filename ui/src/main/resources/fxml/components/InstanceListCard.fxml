@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.FlowPane?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" styleClass="card"
+      fx:controller="org.aurora.launcher.ui.controller.launch.InstanceListCard">
+    
+    <HBox styleClass="card-header">
+        <Label text="%card.myInstances" styleClass="card-title"/>
+        <HBox HBox.hgrow="ALWAYS"/>
+        <Button text="%instance.create" styleClass="btn-sm" onAction="#onNewInstance"/>
+        <Button text="%instance.openFolder" styleClass="btn-sm" onAction="#onOpenFolder"/>
+        <StackPane fx:id="expandIcon" styleClass="expand-icon"/>
+    </HBox>
+    
+    <VBox fx:id="contentArea" styleClass="card-content">
+        <FlowPane fx:id="instanceGrid" hgap="15" vgap="15"/>
+    </VBox>
+    
+</VBox>

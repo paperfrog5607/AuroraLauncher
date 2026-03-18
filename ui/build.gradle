@@ -1,0 +1,175 @@
+plugins {
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
+}
+
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
+application {
+    mainClass = 'org.aurora.launcher.ui.AuroraApplication'
+}
+
+dependencies {
+    implementation project(':core')
+    implementation project(':config')
+    implementation project(':download')
+    implementation project(':resource')
+    implementation project(':mod')
+    implementation project(':modpack')
+    implementation project(':api')
+    implementation project(':ai')
+    implementation project(':dev')
+    implementation project(':launcher')
+    implementation project(':account')
+    implementation project(':diagnostic')
+    
+    implementation 'org.slf4j:slf4j-api:2.0.9'
+    implementation 'ch.qos.logback:logback-classic:1.4.14'
+    implementation 'com.google.guava:guava:33.0.0-jre'
+    implementation 'com.google.code.gson:gson:2.10.1'
+    
+    implementation 'org.openjfx:javafx-controls:17.0.8:win'
+    implementation 'org.openjfx:javafx-fxml:17.0.8:win'
+    implementation 'org.openjfx:javafx-graphics:17.0.8:win'
+    implementation 'org.openjfx:javafx-base:17.0.8:win'
+    implementation 'org.openjfx:javafx-media:17.0.8:win'
+    implementation 'org.openjfx:javafx-web:17.0.8:win'
+    implementation 'org.openjfx:javafx-swing:17.0.8:win'
+    
+    // WebP图片格式支持
+    implementation 'com.twelvemonkeys.imageio:imageio-webp:3.10.1'
+    
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.3'
+    testImplementation 'org.mockito:mockito-core:5.5.0'
+}
+
+compileJava {
+    options.encoding = 'UTF-8'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
+
+test {
+    useJUnitPlatform()
+    maxParallelForks = 1
+    forkEvery = 1
+    jvmArgs '-Xmx256m'
+}
+
+shadowJar {
+    archiveBaseName.set('aurora-launcher')
+    archiveVersion.set('1.0.0')
+    archiveClassifier.set('')
+    
+    manifest {
+        attributes(
+            'Main-Class': 'org.aurora.launcher.ui.AuroraApplication',
+            'Implementation-Title': 'Aurora Launcher',
+            'Implementation-Version': '1.0.0'
+        )
+    }
+    
+    mergeServiceFiles()
+}
+
+task preparePackage(type: Copy, dependsOn: shadowJar) {
+    group = 'distribution'
+    description = 'Prepare files for packaging'
+    
+    from shadowJar.archiveFile
+    into "$buildDir/package-input"
+    
+    doFirst {
+        file("$buildDir/package-input").mkdirs()
+    }
+}
+
+def iconFile = file('src/main/resources/images/icon.ico')
+def iconArg = iconFile.exists() ? ['--icon', iconFile.absolutePath] : []
+
+def javafxJmodsDir = file('../javafx-jmods/javafx-jmods-17.0.8')
+def jmodsArg = javafxJmodsDir.exists() ? ['--module-path', javafxJmodsDir.absolutePath] : []
+
+task packageExe(type: Exec, dependsOn: preparePackage) {
+    group = 'distribution'
+    description = 'Package application as Windows installer'
+    
+    workingDir file("$buildDir")
+    
+    def outputDir = file("$buildDir/distribute")
+    def inputDir = file("$buildDir/package-input")
+    def jarFile = "aurora-launcher-1.0.0.jar"
+    
+    commandLine 'jpackage',
+        '--name', 'AuroraLauncher',
+        '--app-version', '1.0.0',
+        '--input', inputDir.absolutePath,
+        '--main-jar', jarFile,
+        '--main-class', 'org.aurora.launcher.ui.AuroraApplication',
+        '--type', 'exe',
+        '--dest', outputDir.absolutePath,
+        '--win-menu',
+        '--win-shortcut',
+        '--win-dir-chooser',
+        '--win-per-user-install',
+        '--description', 'A modern Minecraft launcher',
+        '--vendor', 'Aurora Team',
+        '--add-modules', 'javafx.controls,javafx.fxml,javafx.graphics,javafx.base,javafx.media,javafx.web,java.logging,java.sql,java.naming,java.security.jgss,jdk.crypto.ec',
+        '--java-options', '-Djava.net.preferIPv4Stack=true',
+        '--java-options', '--add-opens=java.base/java.time=ALL-UNNAMED',
+        '--java-options', '--add-opens=java.base/java.lang=ALL-UNNAMED',
+        *jmodsArg,
+        *iconArg
+    
+    doFirst {
+        outputDir.mkdirs()
+    }
+    
+    doLast {
+        println "Installer created at: ${outputDir.absolutePath}"
+    }
+}
+
+task packagePortable(type: Exec, dependsOn: preparePackage) {
+    group = 'distribution'
+    description = 'Package application as portable ZIP'
+    
+    workingDir file("$buildDir")
+    
+    def outputDir = file("$buildDir/distribute")
+    def inputDir = file("$buildDir/package-input")
+    def jarFile = "aurora-launcher-1.0.0.jar"
+    
+    commandLine 'jpackage',
+        '--name', 'AuroraLauncher',
+        '--app-version', '1.0.0',
+        '--input', inputDir.absolutePath,
+        '--main-jar', jarFile,
+        '--main-class', 'org.aurora.launcher.ui.AuroraApplication',
+        '--type', 'app-image',
+        '--dest', outputDir.absolutePath,
+        '--description', 'A modern Minecraft launcher',
+        '--vendor', 'Aurora Team',
+        '--add-modules', 'javafx.controls,javafx.fxml,javafx.graphics,javafx.base,javafx.media,javafx.web,java.logging,java.sql,java.naming,java.security.jgss,jdk.crypto.ec',
+        '--java-options', '-Djava.net.preferIPv4Stack=true',
+        '--java-options', '--add-opens=java.base/java.time=ALL-UNNAMED',
+        '--java-options', '--add-opens=java.base/java.lang=ALL-UNNAMED',
+        *jmodsArg,
+        *iconArg
+    
+    doFirst {
+        outputDir.mkdirs()
+    }
+    
+    doLast {
+        println "Portable version created at: ${outputDir.absolutePath}/AuroraLauncher"
+    }
+}
+
+task packageAll(dependsOn: [packageExe, packagePortable]) {
+    group = 'distribution'
+    description = 'Create all distribution packages'
+}

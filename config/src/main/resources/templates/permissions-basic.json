@@ -1,0 +1,8 @@
+{
+  "id": "permissions-basic",
+  "name": "Basic Permissions",
+  "description": "Basic permission setup with default and admin groups",
+  "gameVersion": "any",
+  "defaults": {},
+  "rules": []
+}
