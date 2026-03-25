@@ -1,0 +1,16 @@
+{
+  "$schema": "https://cdn.zeabur.com/zeabur.schema.json",
+  "project": "Aurora Platform",
+  "region": "auto",
+  "services": [
+    {
+      "name": "backend",
+      "path": "backend",
+      "build": {
+        "method": "docker",
+        "dockerfile": "Dockerfile.backend"
+      },
+      "port": 8080
+    }
+  ]
+}
