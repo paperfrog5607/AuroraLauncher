@@ -1,4 +1,4 @@
-package org.aurora.launcher.network.p2p;
+package org.aurora.launcher.net.p2p;
 
 import java.time.Instant;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -149,7 +149,7 @@ public class IceService {
         }
 
         public StunResult discover() {
-            try (var socket = new java.net.DatagramSocket()) {
+            try (java.net.DatagramSocket socket = new java.net.DatagramSocket()) {
                 socket.setSoTimeout(5000);
                 
                 byte[] transactionId = generateTransactionId();

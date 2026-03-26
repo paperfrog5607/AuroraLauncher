@@ -1,4 +1,4 @@
-package org.aurora.launcher.network.p2p;
+package org.aurora.launcher.net.p2p;
 
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -97,9 +97,15 @@ public class P2PManager {
         byte type = buffer.get();
         
         switch (type) {
-            case 0x01 -> handlePingPacket(buffer, address, port);
-            case 0x02 -> handlePongPacket(buffer);
-            case 0x03 -> handleDataPacket(buffer);
+            case 0x01:
+                handlePingPacket(buffer, address, port);
+                break;
+            case 0x02:
+                handlePongPacket(buffer);
+                break;
+            case 0x03:
+                handleDataPacket(buffer);
+                break;
         }
     }
 

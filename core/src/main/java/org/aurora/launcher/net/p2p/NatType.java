@@ -1,4 +1,4 @@
-package org.aurora.launcher.network.p2p;
+package org.aurora.launcher.net.p2p;
 
 public enum NatType {
     OPEN,

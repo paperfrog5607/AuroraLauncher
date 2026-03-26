@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
-import org.aurora.launcher.network.p2p.*;
+import org.aurora.launcher.net.p2p.*;
 
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
