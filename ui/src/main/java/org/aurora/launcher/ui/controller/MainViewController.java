@@ -71,7 +71,13 @@ public class MainViewController extends BaseController {
     private Button navHome;
 
     @FXML
+    private Button navLaunch;
+    
+    @FXML
     private Button navDownload;
+    
+    @FXML
+    private Button navSettings;
 
     @FXML
     private Button navProfile;
@@ -270,16 +276,18 @@ public class MainViewController extends BaseController {
         currentGroup = 0;
         showNavGroupInstant();
         
-        navHome.getStyleClass().add("active");
+        if (navHome != null) {
+            navHome.getStyleClass().add("active");
+        }
         
-        setupNavButtonHover(navMenu);
-        setupNavButtonHover(navHome);
-        setupNavButtonHover(navDownload);
-        setupNavButtonHover(navProfile);
-        setupNavButtonHover(navGame);
-        setupNavButtonHover(navStore);
-        setupNavButtonHover(navCommunity);
-        setupNavButtonHover(navCreator);
+        if (navMenu != null) setupNavButtonHover(navMenu);
+        if (navHome != null) setupNavButtonHover(navHome);
+        if (navDownload != null) setupNavButtonHover(navDownload);
+        if (navProfile != null) setupNavButtonHover(navProfile);
+        if (navGame != null) setupNavButtonHover(navGame);
+        if (navStore != null) setupNavButtonHover(navStore);
+        if (navCommunity != null) setupNavButtonHover(navCommunity);
+        if (navCreator != null) setupNavButtonHover(navCreator);
         
         setupKeyboardNavigation();
     }
@@ -461,7 +469,43 @@ public class MainViewController extends BaseController {
         String selectedAccount = accountBox != null ? accountBox.getValue() : "玩家 (离线)";
         logger.info("Launching game: {}, account: {}", selectedVersion, selectedAccount);
     }
-
+    
+    @FXML
+    private void onLaunchTab() {
+        clearNavActive();
+        navLaunch.getStyleClass().add("active");
+        contentArea.getChildren().clear();
+        
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LaunchView.fxml"), resources);
+            Node content = loader.load();
+            contentArea.getChildren().add(content);
+            showTopBar();
+            showBottomNavWithAnimation();
+            logger.info("Loaded launch view");
+        } catch (Exception e) {
+            logger.error("Failed to load launch view", e);
+        }
+    }
+    
+    @FXML
+    private void onSettingsTab() {
+        clearNavActive();
+        navSettings.getStyleClass().add("active");
+        contentArea.getChildren().clear();
+        
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/SettingsView.fxml"), resources);
+            Node content = loader.load();
+            contentArea.getChildren().add(content);
+            showTopBar();
+            hideBottomNavWithAnimation();
+            logger.info("Loaded settings view");
+        } catch (Exception e) {
+            logger.error("Failed to load settings view", e);
+        }
+    }
+    
     @FXML
     private void onMenuToggle() {
         if (router != null) {

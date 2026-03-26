@@ -118,13 +118,10 @@ public class AuroraApplication extends Application {
             
             Scene scene = new Scene(root, 1280, 800);
             scene.getStylesheets().addAll(
-                getClass().getResource("/css/aurora-design-system.css").toExternalForm(),
                 getClass().getResource("/css/theme-dark.css").toExternalForm(),
                 getClass().getResource("/css/main.css").toExternalForm(),
                 getClass().getResource("/css/button.css").toExternalForm(),
                 getClass().getResource("/css/card.css").toExternalForm(),
-                getClass().getResource("/css/glass-nav.css").toExternalForm(),
-                getClass().getResource("/css/game-card.css").toExternalForm(),
                 getClass().getResource("/css/input.css").toExternalForm()
             );
             logger.info("Scene configured");

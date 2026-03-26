@@ -16,7 +16,7 @@
 
     <top>
         <VBox>
-            <HBox fx:id="titleBar" styleClass="title-bar">
+            <HBox fx:id="topBar" styleClass="title-bar">
                 <ImageView fitWidth="24" fitHeight="24">
                     <image>
                         <Image url="@../images/logo.png"/>
@@ -31,11 +31,11 @@
             </HBox>
 
             <HBox fx:id="tabBar" styleClass="tab-bar">
-                <Button id="launch" text="%tab.launch" onAction="#onLaunchTab"
+                <Button fx:id="navLaunch" text="%tab.launch" onAction="#onLaunchTab"
                         styleClass="tab-btn, tab-active"/>
-                <Button id="download" text="%tab.download" onAction="#onDownloadTab"
+                <Button fx:id="navDownload" text="%tab.download" onAction="#onDownloadTab"
                         styleClass="tab-btn"/>
-                <Button id="settings" text="%tab.settings" onAction="#onSettingsTab"
+                <Button fx:id="navSettings" text="%tab.settings" onAction="#onSettingsTab"
                         styleClass="tab-btn"/>
             </HBox>
         </VBox>
