@@ -59,7 +59,7 @@ public class P2PManager {
     }
 
     private void startPacketListener() {
-        Thread.ofVirtual().start(() -> {
+        new Thread(() -> {
             try (DatagramSocket socket = new DatagramSocket(localUdpPort)) {
                 socket.setSoTimeout(1000);
                 byte[] buffer = new byte[65535];
@@ -79,7 +79,7 @@ public class P2PManager {
             } catch (IOException e) {
                 notifyEvent(new P2PEvent(P2PEvent.Type.ERROR, "Failed to start packet listener: " + e.getMessage()));
             }
-        });
+        }).start();
     }
 
     private void handleIncomingPacket(byte[] data, int length, InetAddress address, int port) {
@@ -137,7 +137,7 @@ public class P2PManager {
             return;
         }
         int latency = buffer.getInt();
-        notifyEvent(new P2PEvent(P2PEvent.Type.LATENCY_UPDATED, latency));
+        notifyEvent(new P2PEvent(P2PEvent.Type.LATENCY_UPDATED, String.valueOf(latency)));
     }
 
     private void handleDataPacket(ByteBuffer buffer) {
@@ -289,7 +289,7 @@ public class P2PManager {
         return value;
     }
 
-    public static class P2PConnection {
+    public class P2PConnection {
         private final String peerId;
         private InetAddress address;
         private int port;

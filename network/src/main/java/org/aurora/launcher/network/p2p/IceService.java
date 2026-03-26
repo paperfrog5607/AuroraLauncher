@@ -38,7 +38,7 @@ public class IceService {
     }
 
     private void detectNatType() {
-        Thread.ofVirtual().start(() -> {
+        new Thread(() -> {
             try {
                 String stunServer = STUN_SERVERS[0].replace("stun:", "").split(":")[0];
                 int stunPort = Integer.parseInt(STUN_SERVERS[0].split(":")[2]);
@@ -61,7 +61,7 @@ public class IceService {
                 this.detectedNatType = NatType.UNKNOWN;
                 notifyNatTypeChanged();
             }
-        });
+        }).start();
     }
 
     public NatType getNatType() {
@@ -149,20 +149,20 @@ public class IceService {
         }
 
         public StunResult discover() {
-            try (var socket = new java.datagram.DatagramSocket()) {
+            try (var socket = new java.net.DatagramSocket()) {
                 socket.setSoTimeout(5000);
                 
                 byte[] transactionId = generateTransactionId();
                 byte[] request = buildBindingRequest(transactionId);
                 
                 java.net.InetAddress address = java.net.InetAddress.getByName(server);
-                java.datagram.DatagramPacket packet = new java.datagram.DatagramPacket(
+                java.net.DatagramPacket packet = new java.net.DatagramPacket(
                         request, request.length, address, port);
                 
                 socket.send(packet);
                 
                 byte[] response = new byte[1024];
-                java.datagram.DatagramPacket receivePacket = new java.datagram.DatagramPacket(
+                java.net.DatagramPacket receivePacket = new java.net.DatagramPacket(
                         response, response.length);
                 
                 socket.receive(receivePacket);

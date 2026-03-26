@@ -12,8 +12,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import org.aurora.launcher.network.p2p.*;
 
-import java.awt.Toolkit;
-import java.awt.datatransfer.StringSelection;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import java.util.UUID;
 
 public class NetworkController {
@@ -312,7 +312,7 @@ public class NetworkController {
         errorLabel.setStyle("-fx-text-fill: #00ff88;");
         errorLabel.setVisible(true);
         
-        Thread.ofVirtual().start(() -> {
+        new Thread(() -> {
             try {
                 Thread.sleep(2000);
                 Platform.runLater(() -> {
@@ -322,12 +322,14 @@ public class NetworkController {
                     }
                 });
             } catch (InterruptedException ignored) {}
-        });
+        }).start();
     }
 
     private void copyToClipboard(String text) {
-        StringSelection selection = new StringSelection(text);
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);
+        Clipboard clipboard = Clipboard.getSystemClipboard();
+        ClipboardContent content = new ClipboardContent();
+        content.putString(text);
+        clipboard.setContent(content);
     }
 
     public void shutdown() {
