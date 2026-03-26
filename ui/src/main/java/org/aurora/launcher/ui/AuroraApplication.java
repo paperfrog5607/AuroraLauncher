@@ -121,6 +121,7 @@ public class AuroraApplication extends Application {
                 getClass().getResource("/css/theme-dark.css").toExternalForm(),
                 getClass().getResource("/css/background.css").toExternalForm(),
                 getClass().getResource("/css/dock.css").toExternalForm(),
+                getClass().getResource("/css/home.css").toExternalForm(),
                 getClass().getResource("/css/main.css").toExternalForm(),
                 getClass().getResource("/css/button.css").toExternalForm(),
                 getClass().getResource("/css/card.css").toExternalForm(),

@@ -119,11 +119,27 @@ public class MainViewController extends BaseController {
     private Label quickLaunchGame;
     
     @FXML
+    private Label quickLaunchMeta;
+    
+    @FXML
     private Label quickLaunchInfo;
+    
+    @FXML
+    private Button tabMinecraft;
+    
+    @FXML
+    private Button tabSteam;
+    
+    @FXML
+    private VBox quickLaunchSection;
+    
+    @FXML
+    private Label gamesTitle;
 
     private double dragStartX;
     private double dragStartY;
     private boolean isTopBarShown = false;
+    private String currentPlatform = "minecraft";
 
     @Override
     protected void onInitialize() {
@@ -135,8 +151,19 @@ public class MainViewController extends BaseController {
         setupInputHints();
         startTimeUpdate();
         
-        // 延迟加载游戏网格（等待 FXML 注入完成）
-        Platform.runLater(this::loadGameGrid);
+        Platform.runLater(() -> {
+            loadGameGrid();
+            updateQuickLaunch();
+        });
+    }
+    
+    private void updateQuickLaunch() {
+        if (quickLaunchGame != null) {
+            quickLaunchGame.setText("Minecraft 1.21.4");
+        }
+        if (quickLaunchMeta != null) {
+            quickLaunchMeta.setText("Fabric · 最后启动: 今天");
+        }
     }
     
     private void loadGameGrid() {
@@ -148,37 +175,61 @@ public class MainViewController extends BaseController {
         
         gameGrid.getChildren().clear();
         
-        // TODO: 从 Steam + Minecraft 加载游戏列表
-        // 目前添加示例游戏卡片
-        for (int i = 0; i < 6; i++) {
-            VBox card = createGameCard("游戏 " + (i + 1), i == 2);
-            gameGrid.getChildren().add(card);
+        if ("minecraft".equals(currentPlatform)) {
+            // Minecraft 实例
+            for (int i = 0; i < 5; i++) {
+                VBox card = createGameCard("实例 " + (i + 1), "1.21." + (4 - i), "minecraft", i == 0);
+                gameGrid.getChildren().add(card);
+            }
+        } else {
+            // Steam 游戏
+            for (int i = 0; i < 8; i++) {
+                VBox card = createGameCard("Steam 游戏 " + (i + 1), null, "steam", i == 0);
+                gameGrid.getChildren().add(card);
+            }
         }
         
         logger.info("Loaded {} game cards", gameGrid.getChildren().size());
     }
     
-    private VBox createGameCard(String name, boolean selected) {
+    private VBox createGameCard(String name, String version, String source, boolean selected) {
         VBox card = new VBox(8);
-        card.getStyleClass().addAll("game-card");
+        card.getStyleClass().add("game-card");
         if (selected) {
             card.getStyleClass().add("selected");
         }
         card.setAlignment(javafx.geometry.Pos.CENTER);
+        card.setPadding(new javafx.geometry.Insets(16));
         
         // 游戏图标
         Label icon = new Label("🎮");
-        icon.setStyle("-fx-font-size: 48px;");
+        icon.getStyleClass().add("game-card-icon");
         
         // 游戏名称
         Label nameLabel = new Label(name);
         nameLabel.getStyleClass().add("game-card-name");
         
         // 游戏信息
-        Label infoLabel = new Label("游玩 10 小时");
-        infoLabel.getStyleClass().add("game-card-info");
+        String meta = version != null ? version + " · " : "";
+        meta += "游玩 10 小时";
+        Label metaLabel = new Label(meta);
+        metaLabel.getStyleClass().add("game-card-meta");
         
-        card.getChildren().addAll(icon, nameLabel, infoLabel);
+        // 来源标签
+        Label sourceBadge = new Label(source.equals("steam") ? "Steam" : "MC");
+        sourceBadge.getStyleClass().add("game-source-badge");
+        if (source.equals("steam")) {
+            sourceBadge.getStyleClass().add("steam");
+        }
+        
+        // 启动按钮
+        Button playBtn = new Button("▶ 启动");
+        playBtn.getStyleClass().add("game-card-play");
+        playBtn.setOnAction(e -> {
+            logger.info("Launching: {}", name);
+        });
+        
+        card.getChildren().addAll(icon, nameLabel, metaLabel, sourceBadge, playBtn);
         
         card.setOnMouseClicked(e -> {
             gameGrid.getChildren().forEach(n -> n.getStyleClass().remove("selected"));
@@ -186,6 +237,26 @@ public class MainViewController extends BaseController {
         });
         
         return card;
+    }
+    
+    @FXML
+    private void onPlatformMinecraft() {
+        currentPlatform = "minecraft";
+        tabMinecraft.getStyleClass().add("active");
+        tabSteam.getStyleClass().remove("active");
+        if (quickLaunchSection != null) quickLaunchSection.setVisible(true);
+        if (gamesTitle != null) gamesTitle.setText("我的实例");
+        loadGameGrid();
+    }
+    
+    @FXML
+    private void onPlatformSteam() {
+        currentPlatform = "steam";
+        tabSteam.getStyleClass().add("active");
+        tabMinecraft.getStyleClass().remove("active");
+        if (quickLaunchSection != null) quickLaunchSection.setVisible(false);
+        if (gamesTitle != null) gamesTitle.setText("Steam 游戏");
+        loadGameGrid();
     }
     
     private void startTimeUpdate() {

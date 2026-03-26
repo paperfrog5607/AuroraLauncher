@@ -1,0 +1,224 @@
+/* ========================================
+ * Aurora 主页面样式
+ * 
+ * 平台切换 + 游戏网格 + 玻璃卡片
+ * ========================================
+ */
+
+/* === 主内容容器 === */
+.home-content {
+    -fx-spacing: 20px;
+    -fx-padding: 20px 40px;
+    -fx-alignment: top-center;
+}
+
+/* === 平台切换标签 === */
+.platform-tabs {
+    -fx-spacing: 0px;
+    -fx-alignment: center-left;
+    -fx-padding: 0 0 16px 0;
+}
+
+.platform-tab {
+    -fx-background-color: transparent;
+    -fx-text-fill: #8B9BB4;
+    -fx-padding: 12px 24px;
+    -fx-font-size: 15px;
+    -fx-font-weight: 600;
+    -fx-cursor: hand;
+    -fx-background-radius: 12px;
+    -fx-border-width: 0;
+}
+
+.platform-tab:hover {
+    -fx-background-color: rgba(79, 227, 193, 0.1);
+    -fx-text-fill: #FFFFFF;
+}
+
+.platform-tab.active {
+    -fx-background-color: rgba(79, 227, 193, 0.15);
+    -fx-text-fill: #4FE3C1;
+}
+
+/* === 快速启动区域 === */
+.quick-launch-section {
+    -fx-background-color: rgba(10, 22, 40, 0.6);
+    -fx-background-radius: 16px;
+    -fx-border-color: rgba(79, 227, 193, 0.15);
+    -fx-border-width: 1px;
+    -fx-padding: 16px 24px;
+    -fx-spacing: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 8, 0, 0, 2);
+}
+
+.quick-launch-header {
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #5A6A7A;
+}
+
+.quick-launch-row {
+    -fx-spacing: 16px;
+    -fx-alignment: center-left;
+}
+
+.quick-launch-info {
+    -fx-spacing: 4px;
+}
+
+.quick-launch-game {
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #FFFFFF;
+}
+
+.quick-launch-meta {
+    -fx-font-size: 12px;
+    -fx-text-fill: #8B9BB4;
+}
+
+/* === 游戏网格区域 === */
+.games-section {
+    -fx-spacing: 12px;
+}
+
+.section-header {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #8B9BB4;
+    -fx-padding: 8px 0;
+}
+
+.games-grid {
+    -fx-spacing: 12px;
+    -fx-padding: 8px 0;
+    -fx-alignment: center-left;
+}
+
+/* === 玻璃游戏卡片 === */
+.game-card {
+    -fx-background-color: rgba(20, 40, 60, 0.7);
+    -fx-background-radius: 16px;
+    -fx-border-color: rgba(79, 227, 193, 0.2);
+    -fx-border-width: 1px;
+    -fx-min-width: 160px;
+    -fx-min-height: 200px;
+    -fx-pref-width: 160px;
+    -fx-pref-height: 200px;
+    -fx-cursor: hand;
+    -fx-spacing: 8px;
+    -fx-alignment: center;
+    -fx-padding: 16px;
+}
+
+.game-card:hover {
+    -fx-background-color: rgba(30, 50, 70, 0.8);
+    -fx-border-color: rgba(79, 227, 193, 0.4);
+    -fx-effect: dropshadow(gaussian, rgba(79, 227, 193, 0.2), 16, 0, 0, 4);
+}
+
+.game-card.selected {
+    -fx-background-color: rgba(20, 40, 60, 0.9);
+    -fx-border-color: #4FE3C1;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 20, 0, 0, 6), dropshadow(gaussian, rgba(79, 227, 193, 0.4), 16, 0, 0, 0);
+}
+
+/* === 游戏图标 === */
+.game-card-icon {
+    -fx-font-size: 56px;
+    -fx-min-width: 64px;
+    -fx-min-height: 64px;
+    -fx-alignment: center;
+}
+
+/* === 游戏信息 === */
+.game-card-name {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #FFFFFF;
+    -fx-text-alignment: center;
+    -fx-wrap-text: true;
+    -fx-max-width: 140px;
+}
+
+.game-card-meta {
+    -fx-font-size: 11px;
+    -fx-text-fill: #8B9BB4;
+    -fx-text-alignment: center;
+}
+
+/* === 游戏卡片启动按钮（选中显示）=== */
+.game-card-play {
+    -fx-background-color: #4FE3C1;
+    -fx-text-fill: white;
+    -fx-background-radius: 12px;
+    -fx-padding: 8px 20px;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-cursor: hand;
+    -fx-opacity: 0;
+}
+
+.game-card.selected .game-card-play {
+    -fx-opacity: 1;
+}
+
+.game-card-play:hover {
+    -fx-background-color: #7FECD9;
+    -fx-effect: dropshadow(gaussian, rgba(79, 227, 193, 0.5), 12, 0, 0, 0);
+}
+
+/* === 游戏来源标签 === */
+.game-source-badge {
+    -fx-background-color: rgba(79, 227, 193, 0.2);
+    -fx-background-radius: 6px;
+    -fx-padding: 2px 8px;
+    -fx-font-size: 10px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #4FE3C1;
+}
+
+.game-source-badge.steam {
+    -fx-background-color: rgba(0, 212, 255, 0.2);
+    -fx-text-fill: #00D4FF;
+}
+
+/* === 空状态 === */
+.empty-state {
+    -fx-spacing: 16px;
+    -fx-alignment: center;
+    -fx-padding: 40px;
+}
+
+.empty-state-icon {
+    -fx-font-size: 48px;
+    -fx-text-fill: #5A6A7A;
+}
+
+.empty-state-text {
+    -fx-font-size: 14px;
+    -fx-text-fill: #8B9BB4;
+}
+
+/* === 加载更多 === */
+.load-more {
+    -fx-background-color: rgba(20, 40, 60, 0.5);
+    -fx-background-radius: 16px;
+    -fx-min-width: 160px;
+    -fx-min-height: 200px;
+    -fx-cursor: hand;
+    -fx-alignment: center;
+    -fx-border-color: rgba(79, 227, 193, 0.1);
+    -fx-border-width: 1px;
+}
+
+.load-more:hover {
+    -fx-background-color: rgba(30, 50, 70, 0.6);
+    -fx-border-color: rgba(79, 227, 193, 0.2);
+}
+
+.load-more-text {
+    -fx-font-size: 13px;
+    -fx-text-fill: #8B9BB4;
+}
