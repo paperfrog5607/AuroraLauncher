@@ -70,8 +70,8 @@
 | | 服务端整合包 | ⬜ |
 | | 模组兼容性检测 | ⬜ |
 | | KubeJS 脚本 | ⬜ |
-| | 数据包可视化 | ❌ 缺失 |
-| | 资源包可视化 | ❌ 缺失 |
+| | 数据包可视化编辑器 | ⬜ 待实现 |
+| | 资源包可视化编辑器 | ⬜ 待实现 |
 | **设置页面** | 启动设置 | ⬜ |
 | | 下载设置 | ⬜ |
 | | 主题设置 | ⬜ |
@@ -109,12 +109,14 @@
 
 ## 四、缺失文件
 
-| 文件 | 说明 |
-|------|------|
-| creator/DatapackView.fxml | 数据包可视化编辑器 |
-| creator/ResourcepackView.fxml | 资源包可视化编辑器 |
-| DatapackController.java | 数据包控制器 |
-| ResourcepackController.java | 资源包控制器 |
+> 注：以下文件待实现时创建
+
+| 文件 | 功能 | 说明 |
+|------|------|------|
+| DatapackEditor.fxml | 数据包可视化编辑器 UI | 拖拽式编辑 |
+| DatapackEditorController.java | 数据包编辑控制器 | |
+| ResourcepackEditor.fxml | 资源包可视化编辑器 UI | 实时预览 |
+| ResourcepackEditorController.java | 资源包编辑控制器 | |
 
 ---
 
