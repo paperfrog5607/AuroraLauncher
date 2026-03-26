@@ -1,6 +1,6 @@
 # Aurora Launcher 开发进度
 
-## 更新时间: 2026-03-26 19:40
+## 更新时间: 2026-03-26 21:00
 
 ## 模式变更: 本地优先 (Local-Only Mode)
 
@@ -11,7 +11,13 @@
 **当前状态**:
 - JavaFX UI: ✅ 完成
 - Gradle 构建: ✅ 通过
-- 后端: ❌ 已移除
+- P2P 网络: ✅ 完成
+- 游戏适配器: ✅ 完成
+- 打包发布: ✅ 完成
+
+**打包输出**:
+- 安装包: `ui/build/distribute/AuroraLauncher-1.0.0.exe` (~103 MB)
+- 便携版: `ui/build/distribute/AuroraLauncher/AuroraLauncher.exe` (~464 KB + JRE)
 
 ## 一、设计文档 ✅ 完成
 
