@@ -78,6 +78,9 @@ public class MainViewController extends BaseController {
     
     @FXML
     private Button navSettings;
+    
+    @FXML
+    private Button navCreator;
 
     @FXML
     private Button navProfile;
@@ -90,9 +93,6 @@ public class MainViewController extends BaseController {
     
     @FXML
     private Button navCommunity;
-
-    @FXML
-    private Button navCreator;
 
     private double dragStartX;
     private double dragStartY;
