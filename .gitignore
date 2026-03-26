@@ -41,6 +41,9 @@ cache/
 aurora/
 .aurora/
 
+# Local-only mode (backend removed to reduce cost)
+backend/
+
 # Package files (keep source only)
 *.exe
 *.msi
