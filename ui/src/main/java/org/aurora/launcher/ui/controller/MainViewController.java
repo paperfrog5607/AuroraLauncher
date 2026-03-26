@@ -95,6 +95,9 @@ public class MainViewController extends BaseController {
     private Button navCommunity;
     
     @FXML
+    private Button navNetwork;
+    
+    @FXML
     private Button notificationBtn;
     
     @FXML
@@ -102,6 +105,18 @@ public class MainViewController extends BaseController {
     
     @FXML
     private VBox notificationCenter;
+    
+    @FXML
+    private Label timeLabel;
+    
+    @FXML
+    private HBox gameGrid;
+    
+    @FXML
+    private Label quickLaunchGame;
+    
+    @FXML
+    private Label quickLaunchInfo;
 
     private double dragStartX;
     private double dragStartY;
@@ -519,6 +534,35 @@ public class MainViewController extends BaseController {
     }
     
     @FXML
+    private void onNetworkTab() {
+        clearNavActive();
+        navNetwork.getStyleClass().add("active");
+        contentArea.getChildren().clear();
+        
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/NetworkView.fxml"), resources);
+            Node content = loader.load();
+            contentArea.getChildren().add(content);
+            showTopBar();
+            hideBottomNavWithAnimation();
+            logger.info("Loaded network view");
+        } catch (Exception e) {
+            logger.error("Failed to load network view", e);
+        }
+    }
+    
+    @FXML
+    private void onQuickLaunch() {
+        logger.info("Quick launch clicked");
+        onLaunch();
+    }
+    
+    @FXML
+    private void onVersionSelect() {
+        logger.info("Version select clicked");
+    }
+    
+    @FXML
     private void onMenuToggle() {
         if (router != null) {
             router.switchTab("settings");
@@ -614,15 +658,10 @@ public class MainViewController extends BaseController {
     }
     
     private void clearNavActive() {
-        if (navMenu != null) navMenu.getStyleClass().remove("active");
-        if (navHome != null) navHome.getStyleClass().remove("active");
         if (navLaunch != null) navLaunch.getStyleClass().remove("active");
         if (navDownload != null) navDownload.getStyleClass().remove("active");
-        if (navProfile != null) navProfile.getStyleClass().remove("active");
-        if (navGame != null) navGame.getStyleClass().remove("active");
-        if (navStore != null) navStore.getStyleClass().remove("active");
-        if (navCommunity != null) navCommunity.getStyleClass().remove("active");
         if (navCreator != null) navCreator.getStyleClass().remove("active");
+        if (navNetwork != null) navNetwork.getStyleClass().remove("active");
         if (navSettings != null) navSettings.getStyleClass().remove("active");
     }
 

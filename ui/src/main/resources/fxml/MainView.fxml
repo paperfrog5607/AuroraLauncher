@@ -3,8 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -15,19 +13,22 @@
             styleClass="main-window"
             fx:controller="org.aurora.launcher.ui.controller.MainViewController">
 
+    <!-- === 顶部状态栏 === -->
     <top>
-        <!-- 极简顶栏 -->
-        <HBox fx:id="topBar" styleClass="top-bar" prefHeight="40" alignment="CENTER">
+        <HBox fx:id="topBar" styleClass="top-bar" prefHeight="40" alignment="CENTER_RIGHT">
             <HBox.margin><Insets left="16" right="16"/></HBox.margin>
             
             <!-- 空白填充 -->
             <Region HBox.hgrow="ALWAYS"/>
             
+            <!-- 时间显示 -->
+            <Label fx:id="timeLabel" text="22:30" styleClass="time-display"/>
+            
             <!-- 通知图标 -->
             <StackPane>
-                <Button fx:id="notificationBtn" styleClass="notification-icon-btn" onAction="#onNotificationClick">
+                <Button fx:id="notificationBtn" styleClass="notification-btn" onAction="#onNotificationClick">
                     <graphic>
-                        <Label text="🔔" styleClass="dock-icon"/>
+                        <Label text="🔔" styleClass="notification-icon"/>
                     </graphic>
                 </Button>
                 <Label fx:id="notificationBadge" text="3" styleClass="notification-badge" visible="false"
@@ -36,28 +37,60 @@
                 </Label>
             </StackPane>
             
-            <!-- 窗口控制 -->
-            <HBox styleClass="window-controls" alignment="CENTER" spacing="8">
-                <Button onAction="#onMinimize" styleClass="btn-icon,btn-ghost" text="─"/>
-                <Button onAction="#onClose" styleClass="btn-icon,btn-ghost" text="✕"/>
-            </HBox>
+            <HBox.margin><Insets right="12"/></HBox.margin>
+            
+            <!-- 用户头像 -->
+            <StackPane styleClass="user-avatar">
+                <Label text="👤" styleClass="avatar-icon"/>
+            </StackPane>
         </HBox>
     </top>
 
+    <!-- === 主内容区域（游戏网格）=== -->
     <center>
-        <!-- 主内容区域 -->
         <StackPane fx:id="contentArea" styleClass="content-area">
-            <!-- 通知中心面板 (初始隐藏) -->
-            <VBox fx:id="notificationCenter" styleClass="notification-center" visible="false"
-                  managed="false" StackPane.alignment="TOP_RIGHT">
-                <StackPane.margin><Insets top="0" right="0"/></StackPane.margin>
+            <!-- 游戏网格（横向滚动）-->
+            <VBox styleClass="home-content" spacing="20" alignment="CENTER">
+                <HBox.margin><Insets top="20" bottom="20"/></HBox.margin>
+                
+                <!-- 快速启动区域 -->
+                <VBox styleClass="quick-launch">
+                    <Label text="快速启动" styleClass="quick-launch-title"/>
+                    <HBox spacing="16" alignment="CENTER_LEFT">
+                        <Label text="🎮" styleClass="quick-launch-icon"/>
+                        <VBox spacing="4">
+                            <Label fx:id="quickLaunchGame" text="Minecraft 1.21.4" style="-fx-font-size: 15px; -fx-font-weight: 600; -fx-text-fill: white;"/>
+                            <Label fx:id="quickLaunchInfo" text="最后游玩: 今天 14:30" styleClass="game-card-info"/>
+                        </VBox>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button text="▶ 开始游戏" styleClass="quick-launch-btn" onAction="#onQuickLaunch"/>
+                        <Button text="1.21.4 ▼" styleClass="quick-launch-version" onAction="#onVersionSelect"/>
+                    </HBox>
+                </VBox>
+                
+                <!-- 游戏网格标题 -->
+                <Label text="我的游戏" styleClass="section-title">
+                    <VBox.margin><Insets top="20"/></VBox.margin>
+                </Label>
+                
+                <!-- 游戏网格（横向滚动）-->
+                <HBox fx:id="gameGrid" styleClass="game-grid" spacing="16" alignment="CENTER">
+                    <!-- 游戏卡片会在这里动态添加 -->
+                </HBox>
+            </VBox>
+            
+            <!-- 通知中心面板（初始隐藏，从中间展开）-->
+            <VBox fx:id="notificationCenter" styleClass="notification-panel" visible="false"
+                  managed="false" alignment="TOP_CENTER" spacing="12">
+                <StackPane.margin><Insets top="60"/></StackPane.margin>
+                <!-- 通知内容会在这里动态添加 -->
             </VBox>
         </StackPane>
     </center>
 
+    <!-- === 底部导航 Dock === -->
     <bottom>
-        <!-- 底部导航 Dock -->
-        <HBox styleClass="bottom-dock" alignment="CENTER" prefHeight="56">
+        <HBox styleClass="bottom-dock" alignment="CENTER" prefHeight="60">
             <!-- 启动 -->
             <Button fx:id="navLaunch" styleClass="dock-item,active" onAction="#onLaunchTab">
                 <graphic>
@@ -82,12 +115,20 @@
                 <text>创作</text>
             </Button>
             
-            <!-- 更多 -->
+            <!-- 联机 -->
+            <Button fx:id="navNetwork" styleClass="dock-item" onAction="#onNetworkTab">
+                <graphic>
+                    <Label text="🌐" styleClass="dock-icon"/>
+                </graphic>
+                <text>联机</text>
+            </Button>
+            
+            <!-- 设置 -->
             <Button fx:id="navSettings" styleClass="dock-item" onAction="#onSettingsTab">
                 <graphic>
                     <Label text="⚙" styleClass="dock-icon"/>
                 </graphic>
-                <text>更多</text>
+                <text>设置</text>
             </Button>
         </HBox>
     </bottom>

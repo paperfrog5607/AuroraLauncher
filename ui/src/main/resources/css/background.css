@@ -1,0 +1,37 @@
+/* ========================================
+ * Aurora 主页背景 - 星空动态效果
+ * ========================================
+ */
+
+/* === 主窗口背景 === */
+.main-window {
+    -fx-background-color: #0A1628;
+}
+
+/* === 主页背景容器 === */
+.home-background {
+    -fx-background-color: #0A1628;
+}
+
+/* === 星空效果 === */
+.stars-layer {
+    -fx-background-color: transparent;
+}
+
+/* === 游戏主题背景 === */
+.game-theme-background {
+    -fx-background-color: #0A1628;
+    -fx-background-size: cover;
+    -fx-background-position: center;
+    -fx-background-repeat: no-repeat;
+}
+
+/* === 背景模糊效果 === */
+.background-blur {
+    -fx-background-color: rgba(10, 22, 40, 0.7);
+}
+
+/* === 动态背景切换动画 === */
+.background-transition {
+    -fx-background-color: #0A1628;
+}

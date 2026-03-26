@@ -119,6 +119,8 @@ public class AuroraApplication extends Application {
             Scene scene = new Scene(root, 1280, 800);
             scene.getStylesheets().addAll(
                 getClass().getResource("/css/theme-dark.css").toExternalForm(),
+                getClass().getResource("/css/background.css").toExternalForm(),
+                getClass().getResource("/css/dock.css").toExternalForm(),
                 getClass().getResource("/css/main.css").toExternalForm(),
                 getClass().getResource("/css/button.css").toExternalForm(),
                 getClass().getResource("/css/card.css").toExternalForm(),

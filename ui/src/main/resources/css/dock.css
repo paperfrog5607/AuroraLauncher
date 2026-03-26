@@ -1,0 +1,252 @@
+/* ========================================
+ * Aurora 底部导航 Dock
+ * 
+ * 设计参考：Nintendo Switch 底部导航
+ * 特点：圆角图标 + 发光选中效果
+ * ========================================
+ */
+
+/* === 底部 Dock 容器 === */
+.bottom-dock {
+    -fx-background-color: rgba(10, 22, 40, 0.95);
+    -fx-padding: 12px 32px;
+    -fx-border-color: rgba(79, 227, 193, 0.1);
+    -fx-border-width: 1px 0 0 0;
+    -fx-spacing: 32px;
+    -fx-alignment: center;
+    -fx-min-height: 60px;
+    -fx-pref-height: 60px;
+}
+
+/* === Dock 导航项 === */
+.dock-item {
+    -fx-background-color: transparent;
+    -fx-text-fill: #8B9BB4;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 12px;
+    -fx-cursor: hand;
+    -fx-spacing: 8px;
+    -fx-alignment: center;
+    -fx-font-size: 13px;
+    -fx-font-weight: 500;
+    -fx-border-width: 0;
+}
+
+.dock-item:hover {
+    -fx-background-color: rgba(79, 227, 193, 0.1);
+    -fx-text-fill: #FFFFFF;
+}
+
+.dock-item.active {
+    -fx-background-color: rgba(79, 227, 193, 0.15);
+    -fx-text-fill: #4FE3C1;
+    -fx-border-color: #4FE3C1;
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-radius: 0;
+}
+
+/* === Dock 图标 === */
+.dock-icon {
+    -fx-font-size: 20px;
+    -fx-min-width: 24px;
+    -fx-min-height: 24px;
+    -fx-alignment: center;
+}
+
+/* === Dock 图标圆形背景 === */
+.dock-icon-circle {
+    -fx-background-color: rgba(79, 227, 193, 0.15);
+    -fx-background-radius: 20px;
+    -fx-min-width: 40px;
+    -fx-min-height: 40px;
+    -fx-padding: 8px;
+    -fx-alignment: center;
+}
+
+.dock-icon-circle:hover {
+    -fx-background-color: rgba(79, 227, 193, 0.25);
+}
+
+.dock-icon-circle.active {
+    -fx-background-color: #4FE3C1;
+}
+
+.dock-icon-circle.active .dock-icon {
+    -fx-text-fill: white;
+}
+
+/* ========================================
+ * Aurora 游戏网格 - 横向滚动
+ * 
+ * 设计参考：Nintendo Switch 游戏选择
+ * 特点：大图标 + 选中放大 + 发光边框
+ * ========================================
+ */
+
+/* === 游戏网格容器 === */
+.game-grid {
+    -fx-spacing: 16px;
+    -fx-padding: 20px;
+    -fx-alignment: center;
+}
+
+/* === 游戏卡片 === */
+.game-card {
+    -fx-background-color: rgba(13, 27, 42, 0.9);
+    -fx-background-radius: 16px;
+    -fx-border-color: rgba(79, 227, 193, 0.2);
+    -fx-border-width: 1px;
+    -fx-min-width: 140px;
+    -fx-min-height: 180px;
+    -fx-pref-width: 140px;
+    -fx-pref-height: 180px;
+    -fx-cursor: hand;
+    -fx-spacing: 8px;
+    -fx-alignment: center;
+}
+
+.game-card:hover {
+    -fx-background-color: rgba(20, 40, 60, 0.9);
+    -fx-border-color: rgba(79, 227, 193, 0.4);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 12, 0, 0, 4);
+}
+
+/* === 游戏卡片选中状态 === */
+.game-card.selected {
+    -fx-background-color: rgba(20, 40, 60, 0.95);
+    -fx-border-color: #4FE3C1;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 16, 0, 0, 6), dropshadow(gaussian, rgba(79, 227, 193, 0.4), 20, 0, 0, 0);
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
+/* === 游戏图标 === */
+.game-card-icon {
+    -fx-fit-width: 80px;
+    -fx-fit-height: 80px;
+    -fx-background-radius: 12px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 4);
+}
+
+.game-card.selected .game-card-icon {
+    -fx-fit-width: 88px;
+    -fx-fit-height: 88px;
+}
+
+/* === 游戏名称 === */
+.game-card-name {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #FFFFFF;
+    -fx-max-width: 130px;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+}
+
+/* === 游戏信息 === */
+.game-card-info {
+    -fx-font-size: 11px;
+    -fx-text-fill: #8B9BB4;
+}
+
+/* === 游戏状态标签 === */
+.game-card-badge {
+    -fx-background-color: rgba(79, 227, 193, 0.2);
+    -fx-background-radius: 8px;
+    -fx-padding: 4px 8px;
+    -fx-font-size: 10px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #4FE3C1;
+}
+
+.game-card-badge.warning {
+    -fx-background-color: rgba(245, 158, 11, 0.2);
+    -fx-text-fill: #F59E0B;
+}
+
+.game-card-badge.error {
+    -fx-background-color: rgba(239, 68, 68, 0.2);
+    -fx-text-fill: #EF4444;
+}
+
+/* === 游戏卡片启动按钮 === */
+.game-card-play-btn {
+    -fx-background-color: #4FE3C1;
+    -fx-text-fill: white;
+    -fx-background-radius: 12px;
+    -fx-padding: 10px 24px;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-cursor: hand;
+    -fx-opacity: 0;
+}
+
+.game-card.selected .game-card-play-btn {
+    -fx-opacity: 1;
+}
+
+.game-card-play-btn:hover {
+    -fx-background-color: #7FECD9;
+    -fx-effect: dropshadow(gaussian, rgba(79, 227, 193, 0.4), 20, 0, 0, 0);
+}
+
+/* ========================================
+ * 快速启动区域
+ * ========================================
+ */
+
+.quick-launch {
+    -fx-background-color: rgba(10, 22, 40, 0.9);
+    -fx-background-radius: 24px;
+    -fx-border-color: rgba(79, 227, 193, 0.2);
+    -fx-border-width: 1px;
+    -fx-padding: 20px 32px;
+    -fx-spacing: 16px;
+    -fx-alignment: center-left;
+}
+
+.quick-launch-title {
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #5A6A7A;
+    -fx-padding: 0 0 4px 0;
+}
+
+.quick-launch-btn {
+    -fx-background-color: #4FE3C1;
+    -fx-text-fill: white;
+    -fx-background-radius: 16px;
+    -fx-padding: 14px 32px;
+    -fx-font-size: 15px;
+    -fx-font-weight: 600;
+    -fx-cursor: hand;
+    -fx-spacing: 12px;
+    -fx-alignment: center;
+}
+
+.quick-launch-btn:hover {
+    -fx-background-color: #7FECD9;
+    -fx-effect: dropshadow(gaussian, rgba(79, 227, 193, 0.4), 20, 0, 0, 0);
+}
+
+.quick-launch-btn:pressed {
+    -fx-background-color: #2BB89C;
+}
+
+.quick-launch-icon {
+    -fx-font-size: 18px;
+}
+
+.quick-launch-version {
+    -fx-background-color: rgba(79, 227, 193, 0.15);
+    -fx-background-radius: 12px;
+    -fx-padding: 8px 16px;
+    -fx-font-size: 12px;
+    -fx-text-fill: #4FE3C1;
+    -fx-cursor: hand;
+}
+
+.quick-launch-version:hover {
+    -fx-background-color: rgba(79, 227, 193, 0.25);
+}

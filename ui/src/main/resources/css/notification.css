@@ -1,43 +1,32 @@
-/* 底部导航 Dock */
-.bottom-dock {
-    -fx-background-color: rgba(20, 20, 35, 0.95);
-    -fx-padding: 8px 24px;
-    -fx-border-color: rgba(139, 92, 246, 0.15);
-    -fx-border-width: 1px 0 0 0;
-    -fx-spacing: 24px;
-    -fx-alignment: center;
+/* ========================================
+ * Aurora 通知系统
+ * 
+ * 设计参考：Nintendo Switch 通知中心
+ * 特点：右侧图标 + 中间弹窗 + 发光效果
+ * ========================================
+ */
+
+/* === 顶部状态栏 === */
+.top-bar {
+    -fx-background-color: rgba(10, 22, 40, 0.9);
+    -fx-padding: 8px 16px;
+    -fx-border-color: rgba(79, 227, 193, 0.1);
+    -fx-border-width: 0 0 1px 0;
+    -fx-alignment: center-right;
+    -fx-spacing: 16px;
 }
 
-.dock-item {
-    -fx-background-color: transparent;
-    -fx-text-fill: #B4B4C8;
-    -fx-padding: 10px 20px;
-    -fx-background-radius: 12px;
-    -fx-cursor: hand;
-    -fx-spacing: 8px;
-    -fx-alignment: center;
-    -fx-font-size: 13px;
+/* === 时间显示 === */
+.time-display {
+    -fx-font-size: 14px;
     -fx-font-weight: 500;
+    -fx-text-fill: #8B9BB4;
 }
 
-.dock-item:hover {
-    -fx-background-color: rgba(139, 92, 246, 0.15);
-    -fx-text-fill: #FFFFFF;
-}
-
-.dock-item.active {
-    -fx-background-color: rgba(139, 92, 246, 0.25);
-    -fx-text-fill: #8B5CF6;
-}
-
-.dock-icon {
-    -fx-font-size: 18px;
-}
-
-/* 通知图标容器 */
-.notification-icon-btn {
+/* === 通知按钮 === */
+.notification-btn {
     -fx-background-color: transparent;
-    -fx-background-radius: 50%;
+    -fx-background-radius: 18px;
     -fx-min-width: 36px;
     -fx-min-height: 36px;
     -fx-padding: 0;
@@ -45,42 +34,174 @@
     -fx-alignment: center;
 }
 
-.notification-icon-btn:hover {
-    -fx-background-color: rgba(139, 92, 246, 0.2);
+.notification-btn:hover {
+    -fx-background-color: rgba(79, 227, 193, 0.15);
 }
 
+.notification-icon {
+    -fx-font-size: 18px;
+}
+
+/* === 通知徽章 === */
 .notification-badge {
     -fx-background-color: #EF4444;
     -fx-background-radius: 10px;
     -fx-min-width: 18px;
     -fx-min-height: 18px;
-    -fx-padding: 2px 4px;
+    -fx-padding: 2px 6px;
     -fx-font-size: 11px;
     -fx-font-weight: bold;
     -fx-text-fill: white;
     -fx-alignment: center;
 }
 
-/* 通知 Toast (Switch 风格) */
-.notification-toast {
-    -fx-background-color: rgba(30, 30, 50, 0.95);
-    -fx-background-radius: 12px;
-    -fx-border-color: rgba(139, 92, 246, 0.3);
-    -fx-border-width: 1px;
-    -fx-padding: 12px 16px;
-    -fx-spacing: 10px;
-    -fx-min-width: 280px;
-    -fx-max-width: 320px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 12, 0, 0, 4);
+/* === 用户头像 === */
+.user-avatar {
+    -fx-background-color: rgba(79, 227, 193, 0.15);
+    -fx-background-radius: 16px;
+    -fx-min-width: 32px;
+    -fx-min-height: 32px;
+    -fx-alignment: center;
+    -fx-cursor: hand;
 }
 
-.notification-toast:hover {
-    -fx-border-color: rgba(139, 92, 246, 0.5);
+.user-avatar:hover {
+    -fx-background-color: rgba(79, 227, 193, 0.25);
+}
+
+.avatar-icon {
+    -fx-font-size: 16px;
+}
+
+/* ========================================
+ * 通知面板（中间弹出）
+ * ========================================
+ */
+
+.notification-panel {
+    -fx-background-color: rgba(10, 22, 40, 0.98);
+    -fx-background-radius: 16px;
+    -fx-border-color: #4FE3C1;
+    -fx-border-width: 1px;
+    -fx-padding: 20px;
+    -fx-min-width: 340px;
+    -fx-max-width: 380px;
+    -fx-max-height: 450px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 20, 0, 0, 8), dropshadow(gaussian, rgba(79, 227, 193, 0.3), 15, 0, 0, 0);
+}
+
+.notification-panel-header {
+    -fx-alignment: center-left;
+    -fx-spacing: 8px;
+    -fx-padding: 0 0 12px 0;
+    -fx-border-color: rgba(79, 227, 193, 0.2);
+    -fx-border-width: 0 0 1px 0;
+}
+
+.notification-panel-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #4FE3C1;
+}
+
+.notification-panel-icon {
+    -fx-font-size: 18px;
+}
+
+.clear-all-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #5A6A7A;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+    -fx-padding: 4px 8px;
+    -fx-background-radius: 8px;
+}
+
+.clear-all-btn:hover {
+    -fx-background-color: rgba(79, 227, 193, 0.1);
+    -fx-text-fill: #4FE3C1;
+}
+
+/* === 通知列表 === */
+.notification-list {
+    -fx-spacing: 8px;
+}
+
+.notification-date-label {
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #5A6A7A;
+    -fx-padding: 8px 0 4px 0;
+}
+
+/* === 通知项 === */
+.notification-item {
+    -fx-background-color: rgba(13, 27, 42, 0.8);
+    -fx-background-radius: 12px;
+    -fx-padding: 12px;
+    -fx-spacing: 10px;
+    -fx-cursor: hand;
+    -fx-border-color: transparent;
+    -fx-border-width: 1px;
+}
+
+.notification-item:hover {
+    -fx-background-color: rgba(20, 40, 60, 0.9);
+    -fx-border-color: rgba(79, 227, 193, 0.2);
+}
+
+.notification-item.unread {
+    -fx-background-color: rgba(79, 227, 193, 0.08);
+    -fx-border-color: rgba(79, 227, 193, 0.2);
+}
+
+.notification-item-icon {
+    -fx-font-size: 18px;
+    -fx-min-width: 24px;
+    -fx-alignment: center;
+}
+
+.notification-item-content {
+    -fx-spacing: 4px;
+    -fx-hgrow: always;
+}
+
+.notification-item-title {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #FFFFFF;
+}
+
+.notification-item-message {
+    -fx-font-size: 11px;
+    -fx-text-fill: #8B9BB4;
+}
+
+.notification-item-time {
+    -fx-font-size: 10px;
+    -fx-text-fill: #5A6A7A;
+}
+
+/* ========================================
+ * 通知 Toast（弹出提示）
+ * ========================================
+ */
+
+.notification-toast {
+    -fx-background-color: rgba(10, 22, 40, 0.95);
+    -fx-background-radius: 12px;
+    -fx-border-color: #4FE3C1;
+    -fx-border-width: 1px;
+    -fx-padding: 14px 18px;
+    -fx-spacing: 12px;
+    -fx-min-width: 280px;
+    -fx-max-width: 340px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 16, 0, 0, 6), dropshadow(gaussian, rgba(79, 227, 193, 0.25), 12, 0, 0, 0);
 }
 
 .toast-icon {
     -fx-font-size: 20px;
-    -fx-min-width: 24px;
+    -fx-min-width: 28px;
     -fx-alignment: center;
 }
 
@@ -97,12 +218,12 @@
 
 .toast-message {
     -fx-font-size: 12px;
-    -fx-text-fill: #B4B4C8;
+    -fx-text-fill: #8B9BB4;
 }
 
 .toast-close {
     -fx-background-color: transparent;
-    -fx-text-fill: #6B6B80;
+    -fx-text-fill: #5A6A7A;
     -fx-font-size: 14px;
     -fx-cursor: hand;
     -fx-padding: 4px;
@@ -112,105 +233,31 @@
     -fx-text-fill: #FFFFFF;
 }
 
-/* 通知中心面板 */
-.notification-center {
-    -fx-background-color: rgba(20, 20, 35, 0.98);
-    -fx-background-radius: 0 0 0 16px;
-    -fx-border-color: rgba(139, 92, 246, 0.2);
-    -fx-border-width: 0 0 0 1px;
-    -fx-min-width: 320px;
-    -fx-max-width: 320px;
-    -fx-max-height: 450px;
-}
+/* ========================================
+ * 全屏通知中心
+ * ========================================
+ */
 
-.notification-center-header {
-    -fx-padding: 16px;
-    -fx-border-color: rgba(139, 92, 246, 0.15);
-    -fx-border-width: 0 0 1px 0;
-    -fx-alignment: center-left;
+.notification-center-full {
+    -fx-background-color: rgba(10, 22, 40, 0.98);
+    -fx-padding: 40px;
+    -fx-spacing: 24px;
+    -fx-alignment: top-center;
 }
 
 .notification-center-title {
-    -fx-font-size: 16px;
+    -fx-font-size: 24px;
     -fx-font-weight: 600;
-    -fx-text-fill: #FFFFFF;
+    -fx-text-fill: #4FE3C1;
 }
 
-.clear-all-btn {
-    -fx-background-color: transparent;
-    -fx-text-fill: #8B5CF6;
-    -fx-font-size: 12px;
-    -fx-cursor: hand;
-    -fx-padding: 4px 8px;
-    -fx-background-radius: 8px;
+.notification-center-line {
+    -fx-background-color: #4FE3C1;
+    -fx-pref-width: 100px;
+    -fx-pref-height: 2px;
 }
 
-.clear-all-btn:hover {
-    -fx-background-color: rgba(139, 92, 246, 0.15);
-}
-
-.notification-list {
-    -fx-background-color: transparent;
-    -fx-padding: 8px;
-}
-
-.notification-date-group {
-    -fx-padding: 8px 8px 4px 8px;
-}
-
-.notification-date-label {
-    -fx-font-size: 12px;
-    -fx-font-weight: 600;
-    -fx-text-fill: #6B6B80;
-}
-
-.notification-item {
-    -fx-background-color: rgba(30, 30, 50, 0.8);
-    -fx-background-radius: 10px;
-    -fx-padding: 12px;
-    -fx-spacing: 8px;
-    -fx-cursor: hand;
-}
-
-.notification-item:hover {
-    -fx-background-color: rgba(42, 42, 74, 0.9);
-}
-
-.notification-item.unread {
-    -fx-background-color: rgba(139, 92, 246, 0.1);
-    -fx-border-color: rgba(139, 92, 246, 0.3);
-    -fx-border-width: 1px;
-    -fx-background-radius: 10px;
-}
-
-.notification-item-icon {
-    -fx-font-size: 18px;
-    -fx-min-width: 24px;
-    -fx-alignment: center;
-}
-
-.notification-item-content {
-    -fx-spacing: 2px;
-    -fx-hgrow: always;
-}
-
-.notification-item-title {
-    -fx-font-size: 13px;
-    -fx-font-weight: 500;
-    -fx-text-fill: #FFFFFF;
-}
-
-.notification-item-message {
-    -fx-font-size: 12px;
-    -fx-text-fill: #B4B4C8;
-}
-
-.notification-item-time {
-    -fx-font-size: 11px;
-    -fx-text-fill: #6B6B80;
-}
-
-/* 通知类型颜色 */
+/* === 通知类型颜色 === */
 .type-download { -fx-text-fill: #3B82F6; }
 .type-update { -fx-text-fill: #F59E0B; }
 .type-game { -fx-text-fill: #10B981; }
@@ -218,30 +265,4 @@
 .type-error { -fx-text-fill: #EF4444; }
 .type-warning { -fx-text-fill: #F59E0B; }
 .type-info { -fx-text-fill: #3B82F6; }
-.type-friend { -fx-text-fill: #8B5CF6; }
-
-/* 旧版兼容 */
-.notification {
-    -fx-background-radius: 12px;
-    -fx-padding: 12px 16px;
-    -fx-spacing: 10px;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 4);
-    -fx-min-width: 280px;
-}
-
-.notification--info { -fx-background-color: rgba(59, 130, 246, 0.9); }
-.notification--success { -fx-background-color: rgba(16, 185, 129, 0.9); }
-.notification--warning { -fx-background-color: rgba(245, 158, 11, 0.9); }
-.notification--error { -fx-background-color: rgba(239, 68, 68, 0.9); }
-
-.notification .message { -fx-text-fill: white; -fx-font-size: 13px; }
-.notification .title { -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; }
-.notification .button { -fx-background-color: rgba(255, 255, 255, 0.2); -fx-text-fill: white; -fx-background-radius: 8px; -fx-padding: 4px 8px; -fx-font-size: 12px; }
-
-.notification-container { -fx-spacing: 8px; -fx-alignment: top-right; }
-
-.toast { -fx-background-color: rgba(0, 0, 0, 0.8); -fx-background-radius: 12px; -fx-padding: 10px 16px; -fx-text-fill: white; -fx-font-size: 13px; }
-
-.snackbar { -fx-background-color: rgba(0, 0, 0, 0.85); -fx-background-radius: 8px; -fx-padding: 12px 20px; -fx-spacing: 12px; }
-.snackbar .message { -fx-text-fill: white; -fx-font-size: 13px; }
-.snackbar .action { -fx-background-color: transparent; -fx-text-fill: #A78BFA; -fx-font-size: 13px; -fx-font-weight: bold; -fx-cursor: hand; }
+.type-friend { -fx-text-fill: #4FE3C1; }

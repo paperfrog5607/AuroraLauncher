@@ -1,57 +1,95 @@
+/* ========================================
+ * Aurora 星际深空主题
+ * 
+ * 设计理念：科幻风格 + Switch 鸟格风格
+ * 主色调：深空蓝 + 星光青
+ * 特色：动态背景 + 选中发光
+ * ========================================
+ */
+
 .root {
-    /* Aurora 紫色 - 主色 */
-    -fx-primary: #8B5CF6;
-    -fx-primary-hover: #A78BFA;
-    -fx-primary-pressed: #7C3AED;
-    -fx-primary-light: rgba(139, 92, 246, 0.1);
+    /* === 星际深空配色 === */
+    -fx-bg-deep-space: #0A1628;
+    -fx-bg-midnight: #0D1B2A;
+    -fx-bg-card: rgba(13, 27, 42, 0.9);
+    -fx-bg-glass: rgba(10, 22, 40, 0.85);
     
-    /* 背景 - 深色渐变 */
-    -fx-bg-primary: #0F0F1A;
-    -fx-bg-secondary: #1A1A2E;
-    -fx-bg-card: rgba(30, 30, 50, 0.9);
-    -fx-bg-glass: rgba(26, 26, 46, 0.85);
-    -fx-bg-hover: #2A2A4A;
-    -fx-bg-selected: #3A3A5A;
+    /* === 星光强调色 === */
+    -fx-accent: #4FE3C1;
+    -fx-accent-light: #7FECD9;
+    -fx-accent-dark: #2BB89C;
+    -fx-accent-glow: rgba(79, 227, 193, 0.5);
     
-    /* 文字 */
+    /* === 电光辅助色 === */
+    -fx-electric: #00D4FF;
+    -fx-electric-light: #33DDFF;
+    -fx-electric-dark: #00A8CC;
+    
+    /* === 动态主题色（默认星光青，可被游戏主题覆盖）=== */
+    -fx-theme: #4FE3C1;
+    -fx-theme-light: #7FECD9;
+    -fx-theme-dark: #2BB89C;
+    -fx-theme-glow: rgba(79, 227, 193, 0.5);
+    
+    /* === 文字颜色 === */
     -fx-text-primary: #FFFFFF;
-    -fx-text-secondary: #B4B4C8;
-    -fx-text-tertiary: #6B6B80;
-    -fx-text-disabled: #4A4A5A;
+    -fx-text-secondary: #8B9BB4;
+    -fx-text-tertiary: #5A6A7A;
+    -fx-text-disabled: #3A3A3A;
     
-    /* 边框 */
-    -fx-border: rgba(139, 92, 246, 0.15);
-    -fx-border-light: rgba(139, 92, 246, 0.25);
-    
-    /* 状态色 */
+    /* === 状态颜色 === */
     -fx-success: #10B981;
     -fx-warning: #F59E0B;
     -fx-error: #EF4444;
     -fx-info: #3B82F6;
     
-    /* 圆角 */
-    -fx-radius-sm: 8px;
-    -fx-radius-md: 12px;
-    -fx-radius-lg: 16px;
-    -fx-radius-xl: 24px;
+    /* === 边框颜色 === */
+    -fx-border: rgba(79, 227, 193, 0.2);
+    -fx-border-light: rgba(79, 227, 193, 0.4);
+    -fx-border-glow: rgba(79, 227, 193, 0.6);
+    
+    /* === 圆角系统 === */
+    -fx-radius-xs: 4;
+    -fx-radius-sm: 8;
+    -fx-radius-md: 12;
+    -fx-radius-lg: 16;
+    -fx-radius-xl: 24;
+    
+    /* === 过渡时间 === */
+    -fx-transition-fast: 0.1s;
+    -fx-transition-normal: 0.2s;
+    -fx-transition-slow: 0.3s;
 }
 
-/* 全局样式 */
+/* === 全局样式 === */
 .root {
-    -fx-background-color: -fx-bg-primary;
+    -fx-background-color: -fx-bg-deep-space;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
 }
 
-/* 滚动条样式 */
+/* === 滚动条 === */
 .scroll-bar {
     -fx-background-color: transparent;
     -fx-pref-width: 8px;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: -fx-bg-hover;
+    -fx-background-color: rgba(79, 227, 193, 0.3);
     -fx-background-radius: 4px;
 }
 
 .scroll-bar .thumb:hover {
-    -fx-background-color: -fx-primary;
+    -fx-background-color: -fx-accent;
+}
+
+.scroll-bar .increment-button,
+.scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+/* === 选中高亮 === */
+.selection-highlight {
+    -fx-background-color: rgba(79, 227, 193, 0.2);
 }
