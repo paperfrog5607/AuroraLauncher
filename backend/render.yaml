@@ -1,0 +1,10 @@
+{
+  "name": "aurora-backend",
+  "region": "singapore",
+  "runtime": "go",
+  "buildCommand": "go build -o aurora-server ./cmd/server",
+  "startCommand": "./aurora-server",
+  "rootDirectory": "backend",
+  "healthCheckPath": "/health",
+  "envVars": []
+}
