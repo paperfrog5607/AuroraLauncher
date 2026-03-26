@@ -5,6 +5,8 @@ import javafx.animation.ScaleTransition;
 import javafx.animation.ParallelTransition;
 import javafx.animation.RotateTransition;
 import javafx.animation.FadeTransition;
+import javafx.animation.Timeline;
+import javafx.animation.KeyFrame;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +26,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.io.IOException;
+import java.time.LocalTime;
 import javafx.util.Duration;
 import org.aurora.launcher.ui.AuroraApplication;
 import org.aurora.launcher.ui.input.InputHintsOverlay;
@@ -130,9 +133,70 @@ public class MainViewController extends BaseController {
         setupNavButtons();
         setupWindowDrag();
         setupInputHints();
+        startTimeUpdate();
         
-        // 加载默认页面
-        Platform.runLater(this::onLaunchTab);
+        // 延迟加载游戏网格（等待 FXML 注入完成）
+        Platform.runLater(this::loadGameGrid);
+    }
+    
+    private void loadGameGrid() {
+        logger.info("loadGameGrid called, gameGrid = {}", gameGrid);
+        if (gameGrid == null) {
+            logger.warn("gameGrid is null, skipping game grid load");
+            return;
+        }
+        
+        gameGrid.getChildren().clear();
+        
+        // TODO: 从 Steam + Minecraft 加载游戏列表
+        // 目前添加示例游戏卡片
+        for (int i = 0; i < 6; i++) {
+            VBox card = createGameCard("游戏 " + (i + 1), i == 2);
+            gameGrid.getChildren().add(card);
+        }
+        
+        logger.info("Loaded {} game cards", gameGrid.getChildren().size());
+    }
+    
+    private VBox createGameCard(String name, boolean selected) {
+        VBox card = new VBox(8);
+        card.getStyleClass().addAll("game-card");
+        if (selected) {
+            card.getStyleClass().add("selected");
+        }
+        card.setAlignment(javafx.geometry.Pos.CENTER);
+        
+        // 游戏图标
+        Label icon = new Label("🎮");
+        icon.setStyle("-fx-font-size: 48px;");
+        
+        // 游戏名称
+        Label nameLabel = new Label(name);
+        nameLabel.getStyleClass().add("game-card-name");
+        
+        // 游戏信息
+        Label infoLabel = new Label("游玩 10 小时");
+        infoLabel.getStyleClass().add("game-card-info");
+        
+        card.getChildren().addAll(icon, nameLabel, infoLabel);
+        
+        card.setOnMouseClicked(e -> {
+            gameGrid.getChildren().forEach(n -> n.getStyleClass().remove("selected"));
+            card.getStyleClass().add("selected");
+        });
+        
+        return card;
+    }
+    
+    private void startTimeUpdate() {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
+            if (timeLabel != null) {
+                LocalTime now = LocalTime.now();
+                timeLabel.setText(String.format("%02d:%02d", now.getHour(), now.getMinute()));
+            }
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
     }
     
     private void setupInputHints() {
@@ -500,19 +564,16 @@ public class MainViewController extends BaseController {
     @FXML
     private void onLaunchTab() {
         clearNavActive();
-        navLaunch.getStyleClass().add("active");
-        contentArea.getChildren().clear();
+        if (navLaunch != null) navLaunch.getStyleClass().add("active");
         
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/LaunchView.fxml"), resources);
-            Node content = loader.load();
-            contentArea.getChildren().add(content);
-            showTopBar();
-            showBottomNavWithAnimation();
-            logger.info("Loaded launch view");
-        } catch (Exception e) {
-            logger.error("Failed to load launch view", e);
+        // 显示主页内容
+        contentArea.getChildren().clear();
+        if (homeContent != null) {
+            contentArea.getChildren().add(homeContent);
         }
+        
+        showTopBar();
+        logger.info("Show home content");
     }
     
     @FXML

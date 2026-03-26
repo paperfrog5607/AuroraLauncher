@@ -50,7 +50,7 @@
     <center>
         <StackPane fx:id="contentArea" styleClass="content-area">
             <!-- 游戏网格（横向滚动）-->
-            <VBox styleClass="home-content" spacing="20" alignment="CENTER">
+            <VBox fx:id="homeContent" styleClass="home-content" spacing="20" alignment="CENTER">
                 <HBox.margin><Insets top="20" bottom="20"/></HBox.margin>
                 
                 <!-- 快速启动区域 -->
