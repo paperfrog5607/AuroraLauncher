@@ -122,7 +122,8 @@ public class AuroraApplication extends Application {
                 getClass().getResource("/css/main.css").toExternalForm(),
                 getClass().getResource("/css/button.css").toExternalForm(),
                 getClass().getResource("/css/card.css").toExternalForm(),
-                getClass().getResource("/css/input.css").toExternalForm()
+                getClass().getResource("/css/input.css").toExternalForm(),
+                getClass().getResource("/css/notification.css").toExternalForm()
             );
             logger.info("Scene configured");
             

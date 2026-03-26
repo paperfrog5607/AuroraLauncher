@@ -93,6 +93,15 @@ public class MainViewController extends BaseController {
     
     @FXML
     private Button navCommunity;
+    
+    @FXML
+    private Button notificationBtn;
+    
+    @FXML
+    private Label notificationBadge;
+    
+    @FXML
+    private VBox notificationCenter;
 
     private double dragStartX;
     private double dragStartY;
@@ -106,6 +115,9 @@ public class MainViewController extends BaseController {
         setupNavButtons();
         setupWindowDrag();
         setupInputHints();
+        
+        // 加载默认页面
+        Platform.runLater(this::onLaunchTab);
     }
     
     private void setupInputHints() {
@@ -602,14 +614,16 @@ public class MainViewController extends BaseController {
     }
     
     private void clearNavActive() {
-        navMenu.getStyleClass().remove("active");
-        navHome.getStyleClass().remove("active");
-        navDownload.getStyleClass().remove("active");
-        navProfile.getStyleClass().remove("active");
-        navGame.getStyleClass().remove("active");
-        navStore.getStyleClass().remove("active");
-        navCommunity.getStyleClass().remove("active");
-        navCreator.getStyleClass().remove("active");
+        if (navMenu != null) navMenu.getStyleClass().remove("active");
+        if (navHome != null) navHome.getStyleClass().remove("active");
+        if (navLaunch != null) navLaunch.getStyleClass().remove("active");
+        if (navDownload != null) navDownload.getStyleClass().remove("active");
+        if (navProfile != null) navProfile.getStyleClass().remove("active");
+        if (navGame != null) navGame.getStyleClass().remove("active");
+        if (navStore != null) navStore.getStyleClass().remove("active");
+        if (navCommunity != null) navCommunity.getStyleClass().remove("active");
+        if (navCreator != null) navCreator.getStyleClass().remove("active");
+        if (navSettings != null) navSettings.getStyleClass().remove("active");
     }
 
     @FXML
@@ -639,7 +653,39 @@ public class MainViewController extends BaseController {
 
     @FXML
     private void onNotification() {
-        logger.info("Notification clicked - Minecraft news would be shown here");
+        toggleNotificationCenter();
+    }
+    
+    @FXML
+    private void onNotificationClick() {
+        toggleNotificationCenter();
+    }
+    
+    private boolean notificationCenterVisible = false;
+    
+    private void toggleNotificationCenter() {
+        if (notificationCenter == null) return;
+        
+        notificationCenterVisible = !notificationCenterVisible;
+        
+        if (notificationCenterVisible) {
+            notificationCenter.setVisible(true);
+            notificationCenter.setManaged(true);
+        } else {
+            notificationCenter.setVisible(false);
+            notificationCenter.setManaged(false);
+        }
+    }
+    
+    public void updateNotificationBadge(int count) {
+        if (notificationBadge != null) {
+            if (count > 0) {
+                notificationBadge.setText(String.valueOf(count > 99 ? "99+" : count));
+                notificationBadge.setVisible(true);
+            } else {
+                notificationBadge.setVisible(false);
+            }
+        }
     }
 
     @FXML

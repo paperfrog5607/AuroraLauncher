@@ -16,49 +16,80 @@
             fx:controller="org.aurora.launcher.ui.controller.MainViewController">
 
     <top>
-        <VBox>
-            <!-- 玻璃顶栏 -->
-            <HBox fx:id="topBar" styleClass="glass-nav" prefHeight="48">
-                <!-- Logo -->
-                <HBox styleClass="nav-logo" alignment="CENTER_LEFT" spacing="10">
-                    <ImageView fitWidth="28" fitHeight="28">
-                        <image>
-                            <Image url="@../images/logo.png"/>
-                        </image>
-                    </ImageView>
-                    <Label text="Aurora" styleClass="app-title" visible="false"/>
-                </HBox>
-                
-                <!-- 导航标签 -->
-                <HBox fx:id="tabBar" styleClass="nav-bar" spacing="4" alignment="CENTER">
-                    <Button fx:id="navLaunch" text="启动" onAction="#onLaunchTab"
-                            styleClass="nav-btn"/>
-                    <Button fx:id="navDownload" text="下载" onAction="#onDownloadTab"
-                            styleClass="nav-btn"/>
-                    <Button fx:id="navCreator" text="创作" onAction="#onCreatorTab"
-                            styleClass="nav-btn"/>
-                    <Button fx:id="navSettings" text="更多" onAction="#onSettingsTab"
-                            styleClass="nav-btn"/>
-                </HBox>
-                
-                <!-- 空白填充 -->
-                <Region HBox.hgrow="ALWAYS"/>
-                
-                <!-- 窗口控制 -->
-                <HBox styleClass="window-controls" alignment="CENTER" spacing="12">
-                    <Button onAction="#onMinimize" styleClass="btn-icon,btn-ghost" text="─"/>
-                    <Button onAction="#onClose" styleClass="btn-icon,btn-ghost" text="✕"/>
-                </HBox>
-                
-                <HBox.margin>
-                    <Insets top="0" right="16" bottom="0" left="16"/>
-                </HBox.margin>
+        <!-- 极简顶栏 -->
+        <HBox fx:id="topBar" styleClass="top-bar" prefHeight="40" alignment="CENTER">
+            <HBox.margin><Insets left="16" right="16"/></HBox.margin>
+            
+            <!-- 空白填充 -->
+            <Region HBox.hgrow="ALWAYS"/>
+            
+            <!-- 通知图标 -->
+            <StackPane>
+                <Button fx:id="notificationBtn" styleClass="notification-icon-btn" onAction="#onNotificationClick">
+                    <graphic>
+                        <Label text="🔔" styleClass="dock-icon"/>
+                    </graphic>
+                </Button>
+                <Label fx:id="notificationBadge" text="3" styleClass="notification-badge" visible="false"
+                       StackPane.alignment="TOP_RIGHT">
+                    <StackPane.margin><Insets top="-4" right="-4"/></StackPane.margin>
+                </Label>
+            </StackPane>
+            
+            <!-- 窗口控制 -->
+            <HBox styleClass="window-controls" alignment="CENTER" spacing="8">
+                <Button onAction="#onMinimize" styleClass="btn-icon,btn-ghost" text="─"/>
+                <Button onAction="#onClose" styleClass="btn-icon,btn-ghost" text="✕"/>
             </HBox>
-        </VBox>
+        </HBox>
     </top>
 
     <center>
-        <StackPane fx:id="contentArea" styleClass="content-area"/>
+        <!-- 主内容区域 -->
+        <StackPane fx:id="contentArea" styleClass="content-area">
+            <!-- 通知中心面板 (初始隐藏) -->
+            <VBox fx:id="notificationCenter" styleClass="notification-center" visible="false"
+                  managed="false" StackPane.alignment="TOP_RIGHT">
+                <StackPane.margin><Insets top="0" right="0"/></StackPane.margin>
+            </VBox>
+        </StackPane>
     </center>
+
+    <bottom>
+        <!-- 底部导航 Dock -->
+        <HBox styleClass="bottom-dock" alignment="CENTER" prefHeight="56">
+            <!-- 启动 -->
+            <Button fx:id="navLaunch" styleClass="dock-item,active" onAction="#onLaunchTab">
+                <graphic>
+                    <Label text="🏠" styleClass="dock-icon"/>
+                </graphic>
+                <text>启动</text>
+            </Button>
+            
+            <!-- 下载 -->
+            <Button fx:id="navDownload" styleClass="dock-item" onAction="#onDownloadTab">
+                <graphic>
+                    <Label text="⬇" styleClass="dock-icon"/>
+                </graphic>
+                <text>下载</text>
+            </Button>
+            
+            <!-- 创作 -->
+            <Button fx:id="navCreator" styleClass="dock-item" onAction="#onCreatorTab">
+                <graphic>
+                    <Label text="🎨" styleClass="dock-icon"/>
+                </graphic>
+                <text>创作</text>
+            </Button>
+            
+            <!-- 更多 -->
+            <Button fx:id="navSettings" styleClass="dock-item" onAction="#onSettingsTab">
+                <graphic>
+                    <Label text="⚙" styleClass="dock-icon"/>
+                </graphic>
+                <text>更多</text>
+            </Button>
+        </HBox>
+    </bottom>
 
 </BorderPane>
