@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane xmlns="http://javafx.com/javafx/17"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="org.aurora.launcher.network.ui.NetworkController"
+           stylesheets="@../../main/resources/css/glass-nav.css">
+
+    <VBox fx:id="mainContainer" spacing="20" styleClass="network-container">
+        
+        <!-- Header -->
+        <HBox styleClass="network-header">
+            <Label text="Aurora 联机中心" styleClass="title"/>
+        </HBox>
+
+        <!-- Home Panel (Create/Join buttons) -->
+        <VBox fx:id="homePanel" spacing="20" alignment="CENTER">
+            <padding>
+                <Insets top="60"/>
+            </padding>
+            
+            <Label text="选择操作" styleClass="subtitle"/>
+            
+            <HBox spacing="40" alignment="CENTER">
+                <Button fx:id="createRoomBtn" text="创建房间" 
+                        styleClass="primary-btn" 
+                        onAction="#onCreateRoom"
+                        prefWidth="180" prefHeight="60"/>
+                <Button fx:id="joinRoomBtn" text="加入房间" 
+                        styleClass="secondary-btn"
+                        onAction="#onJoinRoom"
+                        prefWidth="180" prefHeight="60"/>
+            </HBox>
+            
+            <HBox styleClass="status-bar">
+                <Label text="NAT类型: "/>
+                <Label fx:id="natTypeLabel" text="检测中..."/>
+                <Label text=" | 延迟: "/>
+                <Label fx:id="latencyLabel" text="--"/>
+            </HBox>
+        </VBox>
+
+        <!-- Create Room Panel -->
+        <VBox fx:id="createRoomPanel" visible="false" spacing="20" alignment="CENTER">
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="← 返回" styleClass="back-btn" onAction="#onBack"/>
+                <Label text="创建房间" styleClass="section-title"/>
+            </HBox>
+            
+            <VBox spacing="15" alignment="CENTER">
+                <Label text="房间号" styleClass="label"/>
+                <HBox spacing="10" alignment="CENTER">
+                    <Label fx:id="roomCodeLabel" styleClass="code-large"/>
+                    <Button fx:id="copyCodeBtn" text="复制" onAction="#onCopyRoomCode"/>
+                </HBox>
+                
+                <Label text="邀请链接" styleClass="label"/>
+                <HBox spacing="10" alignment="CENTER">
+                    <TextField fx:id="inviteLinkField" editable="false" prefWidth="300"/>
+                    <Button fx:id="copyLinkBtn" text="复制" onAction="#onCopyInviteLink"/>
+                </HBox>
+            </VBox>
+            
+            <VBox fx:id="roomInfoPanel" spacing="10">
+                <HBox spacing="20">
+                    <Label text="状态: "/>
+                    <Label fx:id="roomStatusLabel" text="等待中"/>
+                    <Label text="成员: "/>
+                    <Label fx:id="memberCountLabel" text="0/8"/>
+                </HBox>
+                
+                <Label text="连接成员"/>
+                <ListView fx:id="memberListView" prefHeight="150"/>
+                
+                <HBox spacing="10">
+                    <Button fx:id="refreshBtn" text="刷新" onAction="#onRefresh"/>
+                    <Button fx:id="startGameBtn" text="开始游戏" styleClass="primary-btn" onAction="#onStartGame"/>
+                    <Button fx:id="closeRoomBtn" text="关闭房间" styleClass="danger-btn" onAction="#onCloseRoom"/>
+                </HBox>
+            </VBox>
+        </VBox>
+
+        <!-- Join Room Panel -->
+        <VBox fx:id="joinRoomPanel" visible="false" spacing="20" alignment="CENTER">
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="← 返回" styleClass="back-btn" onAction="#onBack"/>
+                <Label text="加入房间" styleClass="section-title"/>
+            </HBox>
+            
+            <VBox spacing="15" alignment="CENTER">
+                <Label text="输入房间号" styleClass="label"/>
+                <TextField fx:id="roomCodeInput" promptText="6位房间号" 
+                          prefWidth="200" maxWidth="200"/>
+                <Button text="加入房间" styleClass="primary-btn" 
+                        onAction="#onJoinByCode" prefWidth="200"/>
+                
+                <Separator>
+                    <padding>
+                        <Insets top="10" bottom="10"/>
+                    </padding>
+                </Separator>
+                
+                <Label text="或粘贴邀请链接" styleClass="label"/>
+                <TextField fx:id="inviteLinkInput" promptText="https://aurora.gg/join/..." 
+                          prefWidth="300" maxWidth="300"/>
+                <Button text="从链接加入" styleClass="secondary-btn" 
+                        onAction="#onJoinByLink" prefWidth="200"/>
+            </VBox>
+            
+            <Label fx:id="errorLabel" styleClass="error-label" visible="false"/>
+        </VBox>
+
+        <!-- Room Info (when in room from home) -->
+        <VBox fx:id="roomInfoPanel" visible="false" spacing="20" alignment="CENTER">
+            <Label text="房间信息" styleClass="section-title"/>
+            
+            <HBox spacing="20">
+                <Label text="房间号: "/>
+                <Label fx:id="roomCodeLabel" styleClass="code"/>
+            </HBox>
+            
+            <ListView fx:id="memberListView" prefHeight="200"/>
+            
+            <Button fx:id="disconnectBtn" text="断开连接" 
+                    styleClass="danger-btn" onAction="#onDisconnect"/>
+        </VBox>
+
+        <!-- Error Label -->
+        <Label fx:id="errorLabel" styleClass="error-label" visible="false"/>
+
+    </VBox>
+</StackPane>

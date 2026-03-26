@@ -38,11 +38,14 @@ api/cache/
 cache/
 
 # Runtime data
-aurora/
+/aurora/
 .aurora/
 
 # Local-only mode (backend removed to reduce cost)
 backend/
+
+# Network module
+!/network/src/main/java/org/aurora/
 
 # Package files (keep source only)
 *.exe

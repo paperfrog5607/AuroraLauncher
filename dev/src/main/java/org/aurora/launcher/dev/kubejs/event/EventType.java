@@ -1,0 +1,7 @@
+package org.aurora.launcher.dev.kubejs.event;
+
+public enum EventType {
+    BLOCK_BREAK, BLOCK_PLACE, ITEM_CRAFTED, ITEM_SMELTED,
+    ENTITY_DEATH, PLAYER_JOIN, PLAYER_QUIT, PLAYER_CHAT,
+    SERVER_LOAD, SERVER_TICK, WORLD_LOAD, WORLD_TICK
+}
